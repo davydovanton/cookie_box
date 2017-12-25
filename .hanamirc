@@ -1,0 +1,3 @@
+project=cookie_box
+test=rspec
+template=slim
