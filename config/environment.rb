@@ -1,6 +1,7 @@
 require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
+require_relative '../system/import'
 require_relative '../lib/cookie_box'
 require_relative '../apps/web/application'
 

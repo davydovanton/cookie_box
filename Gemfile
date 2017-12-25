@@ -8,6 +8,10 @@ gem 'pg'
 
 gem 'slim'
 
+# dependencies and DI
+gem 'dry-system'
+gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
+
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading
