@@ -27,6 +27,8 @@ group :test do
   gem 'rspec-hanami', github: 'davydovanton/rspec-hanami'
   gem 'hanami-fabrication'
   gem 'capybara'
+  gem 'simplecov', require: false
+  gem 'simplecov-json', require: false
 end
 
 group :production do
