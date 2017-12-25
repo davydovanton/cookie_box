@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/davydovanton/rspec-hanami.git
+  revision: 55a44f6a7b9a8dc613c7a805e6debb97d8b3b103
+  specs:
+    rspec-hanami (0.2.0)
+      hanami
+      rspec
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -47,6 +55,7 @@ GEM
       dry-equalizer (~> 0.2)
       dry-logic (~> 0.4, >= 0.4.0)
       dry-types (~> 0.11.0)
+    fabrication (2.18.0)
     hanami (1.1.0)
       bundler
       concurrent-ruby (~> 1.0)
@@ -69,6 +78,9 @@ GEM
     hanami-controller (1.1.1)
       hanami-utils (~> 1.1)
       rack (~> 2.0)
+    hanami-fabrication (0.1.0)
+      fabrication (~> 2.16)
+      hanami-utils (< 2.0)
     hanami-helpers (1.1.1)
       hanami-utils (~> 1.1)
     hanami-mailer (1.1.0)
@@ -168,10 +180,12 @@ DEPENDENCIES
   capybara
   dotenv (~> 2.0)
   hanami (~> 1.1)
+  hanami-fabrication
   hanami-model (~> 1.1)
   pg
   rake
   rspec
+  rspec-hanami!
   shotgun
   slim
 
