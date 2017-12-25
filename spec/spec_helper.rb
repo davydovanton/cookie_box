@@ -18,6 +18,9 @@ end
 require 'fabrication'
 
 require_relative '../config/environment'
+require 'dry/container/stub'
+Container.enable_stubs!
+
 Hanami.boot
 Hanami::Utils.require!("#{__dir__}/support")
 require 'rspec/hanami'
