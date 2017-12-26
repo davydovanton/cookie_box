@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/davydovanton/web_bouncer.git
-  revision: 0bfeffc414eac808a506272401a43f89b659c57f
+  revision: 52dc8e186dfd8574770656e9d12dd1ab1f245166
   specs:
     web_bouncer (0.1.0)
       dry-container

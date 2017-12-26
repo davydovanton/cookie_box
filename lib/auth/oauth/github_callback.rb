@@ -1,13 +1,17 @@
 class GithubCallback < WebBouncer::OauthCallback
   def call(oauth_response)
-    login = oauth_response['extra']['raw_info']['login']
+    p result = oauth_data(oauth_response)
+    Right(result)
+  end
 
-    if login
-      p oauth_response['extra']['raw_info']
+private
 
-      Right(login)
-    else
-      Left(:not_found)
-    end
+  def oauth_data(data)
+    {
+      login:     data['info']['nickname'],
+      email:     data['info']['email'],
+      name:      data['info']['name'],
+      image_url: data['info']['image']
+    }
   end
 end
