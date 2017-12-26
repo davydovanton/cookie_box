@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/davydovanton/hanami-interactor-matcher.git
-  revision: b59426503b91ae12abfea842d18a1e2324998afe
+  revision: d8f3217cd6a90c111611bdb06de7ce68f62ddcc8
   specs:
     hanami-interactor-matcher (0.1.0)
       dry-matcher
