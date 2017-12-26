@@ -11,6 +11,7 @@ gem 'slim'
 # dependencies and DI
 gem 'dry-system'
 gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
+gem 'hanami-interactor-matcher', github: 'davydovanton/hanami-interactor-matcher'
 
 group :development do
   # Code reloading

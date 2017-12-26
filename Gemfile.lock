@@ -5,6 +5,14 @@ GIT
     dry-system-hanami (0.1.0)
 
 GIT
+  remote: git://github.com/davydovanton/hanami-interactor-matcher.git
+  revision: b59426503b91ae12abfea842d18a1e2324998afe
+  specs:
+    hanami-interactor-matcher (0.1.0)
+      dry-matcher
+      hanami-utils
+
+GIT
   remote: git://github.com/davydovanton/rspec-hanami.git
   revision: 55a44f6a7b9a8dc613c7a805e6debb97d8b3b103
   specs:
@@ -43,6 +51,7 @@ GEM
       dry-container (~> 0.2, >= 0.2.6)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
+    dry-matcher (0.6.0)
     dry-struct (0.3.1)
       dry-configurable (~> 0.1)
       dry-core (~> 0.3)
@@ -210,6 +219,7 @@ DEPENDENCIES
   dry-system-hanami!
   hanami (~> 1.1)
   hanami-fabrication
+  hanami-interactor-matcher!
   hanami-model (~> 1.1)
   pg
   rake
