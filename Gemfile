@@ -13,6 +13,11 @@ gem 'dry-system'
 gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
 gem 'hanami-interactor-matcher', github: 'davydovanton/hanami-interactor-matcher'
 
+# auth
+gem 'web_bouncer', github: 'davydovanton/web_bouncer'
+gem 'omniauth'
+gem 'omniauth-github', github: 'intridea/omniauth-github'
+
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading
