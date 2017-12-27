@@ -8,7 +8,7 @@ module Web::Controllers::Decks
 
     def call(params)
       operation.call(current_account.id)
-        .bind { |value| @decks = value }
+        .fmap { |value| @decks = value }
     end
   end
 end
