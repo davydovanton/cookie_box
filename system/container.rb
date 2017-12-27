@@ -7,5 +7,8 @@ class Container < Dry::System::Container
   #  Core
   register_folder! 'cookie_box/repositories'
 
+  #  Decks
+  register_folder! 'decks/operations'
+
   configure
 end
