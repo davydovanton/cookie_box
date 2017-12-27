@@ -1,1 +1,3 @@
-get '/', to: 'home#index'
+root to: 'home#index'
+
+resources :decks, only: %i[index]
