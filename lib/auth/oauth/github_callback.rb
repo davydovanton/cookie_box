@@ -1,6 +1,6 @@
 class GithubCallback < WebBouncer::OauthCallback
   def call(oauth_response)
-    p result = oauth_data(oauth_response)
+    result = oauth_data(oauth_response)
     Right(result)
   end
 
