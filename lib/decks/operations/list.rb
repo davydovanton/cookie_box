@@ -1,7 +1,8 @@
 module Decks
   module Operations
-    class List
+    class List < Core::Operation
       def call(account_id)
+        Right(:ok)
       end
     end
   end
