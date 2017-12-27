@@ -1,4 +1,4 @@
-RSpec.describe GithubCallback do
+RSpec.describe Auth::Oauth::GithubCallback do
   include Dry::Monads::Either::Mixin
 
   let(:callback) { described_class.new({}) }
