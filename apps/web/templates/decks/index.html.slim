@@ -1,4 +1,8 @@
 h1 #{current_account.name} Decks
 
 div
+  - decks.each do |deck|
+    div = deck.title
+
+div
   = link_to 'Logout', '/auth/logout'
