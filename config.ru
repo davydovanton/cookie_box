@@ -9,6 +9,6 @@ use Rack::Session::Cookie, secret: ENV['WEB_SESSIONS_SECRET']
 use OmniAuth::Builder do
   provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], provider_ignores_state: true
 end
-use WebBouncer['middleware.oauth'], { model: :account }
+use WebBouncer['middleware.oauth'], { model: :account, login_redirect: '/decks' }
 
 run Hanami.app

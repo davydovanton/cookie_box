@@ -5,9 +5,6 @@ RSpec.describe Web::Views::Decks::Index, type: :view do
   let(:rendered)  { view.render }
 
   it 'exposes #foo' do
-    pending 'This is an auto-generated test. Edit it and add your own tests.'
-
-    # Example
     expect(view.foo).to eq exposures.fetch(:foo)
   end
 end
