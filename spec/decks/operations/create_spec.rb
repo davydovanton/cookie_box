@@ -4,14 +4,14 @@ RSpec.describe Decks::Operations::Create do
 
   subject { operation.call(payload) }
 
-  context 'when context is valid' do
+  context 'when payload is valid' do
     let(:payload) { { title: 'test', account_id: 1 } }
 
     it { expect(subject).to be_right }
     it { expect(subject.value).to be_a Deck }
   end
 
-  context 'when context is invalid' do
+  context 'when payload is invalid' do
     let(:payload) { {} }
 
     it { expect(subject).to be_left }
