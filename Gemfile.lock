@@ -88,6 +88,11 @@ GEM
       dry-equalizer (~> 0.2)
       dry-struct (~> 0.3)
       inflecto (>= 0.0.2)
+    dry-transaction (0.10.2)
+      dry-container (>= 0.2.8)
+      dry-matcher (>= 0.5.0)
+      dry-monads (>= 0.0.1)
+      wisper (>= 1.6.0)
     dry-types (0.11.1)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.1)
@@ -248,6 +253,7 @@ GEM
     transproc (1.0.2)
     url_mount (0.2.1)
       rack
+    wisper (2.0.0)
     xpath (2.1.0)
       nokogiri (~> 1.3)
 
@@ -259,6 +265,7 @@ DEPENDENCIES
   dotenv (~> 2.0)
   dry-system
   dry-system-hanami!
+  dry-transaction
   hanami (~> 1.1)
   hanami-fabrication
   hanami-interactor-matcher!

@@ -1,6 +1,9 @@
+require 'dry/transaction'
+
 module Decks
   module Operations
     class Create < Core::Operation
+      include Dry::Transaction
       include Import['repositories.deck']
 
       VALIDATOR = Dry::Validation.Form do
@@ -8,14 +11,15 @@ module Decks
         required(:account_id).filled(:int?)
       end
 
-      def call(payload)
-        result = VALIDATOR.call(payload)
+      step :validate
+      step :persist
 
-        if result.success?
-          Right(deck.create(payload))
-        else
-          Left([:invalid_data, result.messages])
-        end
+      def validate(payload)
+        VALIDATOR.call(payload).to_either
+      end
+
+      def persist(payload)
+        Right(deck.create(payload))
       end
     end
   end

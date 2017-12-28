@@ -15,11 +15,6 @@ RSpec.describe Decks::Operations::Create do
     let(:payload) { {} }
 
     it { expect(subject).to be_left }
-    it do
-      expect(subject.value).to eq [:invalid_data, {
-        title: ['is missing'],
-        account_id: ['is missing']
-      }]
-    end
+    it { expect(subject.value).to eq(title: ['is missing'], account_id: ['is missing']) }
   end
 end
