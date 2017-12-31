@@ -4,7 +4,8 @@ module Decks
       include Import['repositories.deck']
 
       def call(deck_id:)
-        Right(deck.archive(deck_id))
+        deck.archive(deck_id) if deck_id
+        Right(:ok)
       end
     end
   end
