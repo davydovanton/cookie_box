@@ -1,3 +1,3 @@
 root to: 'home#index'
 
-resources :decks, only: %i[index create destroy]
+resources :decks, only: %i[index create show destroy]
