@@ -3,7 +3,6 @@ require 'dry/transaction'
 module Decks
   module Operations
     class Create < Core::Operation
-      include Dry::Transaction
       include Import['repositories.deck']
 
       VALIDATOR = Dry::Validation.Form do
@@ -11,15 +10,8 @@ module Decks
         required(:account_id).filled(:int?)
       end
 
-      step :validate
-      step :persist
-
-      def validate(payload)
-        VALIDATOR.call(payload).to_either
-      end
-
-      def persist(payload)
-        Right(deck.create(payload))
+      def call(payload)
+        VALIDATOR.call(payload).to_either.fmap { |p| deck.create(p) }
       end
     end
   end
