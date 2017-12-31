@@ -3,7 +3,7 @@ h1 #{current_account.name} Decks
 div
   - decks.each do |deck|
     div
-      = deck.title
+      = link_to deck.title, routes.deck_path(deck.id)
       = archive_form(deck)
 
 div
