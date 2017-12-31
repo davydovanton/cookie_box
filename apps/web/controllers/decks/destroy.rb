@@ -9,5 +9,11 @@ module Web::Controllers::Decks
       operation.call(deck_id: params[:id])
       redirect_to routes.decks_path
     end
+
+  private
+
+    def verify_csrf_token?
+      false
+    end
   end
 end

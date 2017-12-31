@@ -12,5 +12,13 @@ module Web::Views::Decks
     def deck_form
       Form.new(:deck, routes.decks_path, { method: :post })
     end
+
+    def archive_form(deck)
+      html.form(action: "/decks/#{deck.id}", method: "POST") do
+        input(type: "hidden", name: "_method", value: "DELETE")
+        input(type: "hidden", name: "id",      value: deck.id)
+        input(type: "submit", value: "Archive")
+      end
+    end
   end
 end

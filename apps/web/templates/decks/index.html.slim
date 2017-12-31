@@ -2,7 +2,9 @@ h1 #{current_account.name} Decks
 
 div
   - decks.each do |deck|
-    div = deck.title
+    div
+      = deck.title
+      = archive_form(deck)
 
 div
   = link_to 'Logout', '/auth/logout'
