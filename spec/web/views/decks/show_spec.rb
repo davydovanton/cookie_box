@@ -1,13 +1,9 @@
 RSpec.describe Web::Views::Decks::Show, type: :view do
-  let(:exposures) { Hash[foo: 'bar'] }
+  let(:exposures) { Hash[deck: deck] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/decks/show.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
+  let(:deck)      { Deck.new(title: 'test deck') }
 
-  it 'exposes #foo' do
-    pending 'This is an auto-generated test. Edit it and add your own tests.'
-
-    # Example
-    expect(view.foo).to eq exposures.fetch(:foo)
-  end
+  it { expect(rendered).to match 'test deck' }
 end
