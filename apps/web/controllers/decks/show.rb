@@ -8,7 +8,7 @@ module Web::Controllers::Decks
 
     def call(params)
       operation.call(params[:id]).fmap { |value| @deck = value }
-      self.status = 404 unless @deck
+      self.status = 404 if @deck.nil? || @deck.account_id != current_account.id
     end
   end
 end
