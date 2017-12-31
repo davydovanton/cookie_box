@@ -17,6 +17,18 @@ RSpec.describe DeckRepository, type: :repository do
       it { expect(subject).to be_a Array }
       it { expect(subject.count).to eq 1 }
       it { expect(subject.first).to be_a Deck }
+      it { expect(subject.first.title).to eq 'test' }
+    end
+
+    context 'when account has archived deck' do
+      before { repo.create(account_id: account.id, title: 'archived deck', deleted_at: Time.now) }
+
+      let(:account_id) { account.id }
+
+      it { expect(subject).to be_a Array }
+      it { expect(subject.count).to eq 1 }
+      it { expect(subject.first).to be_a Deck }
+      it { expect(subject.first.title).to eq 'test' }
     end
 
     context 'when account does not have decks' do
