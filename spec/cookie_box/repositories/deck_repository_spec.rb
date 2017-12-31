@@ -56,4 +56,17 @@ RSpec.describe DeckRepository, type: :repository do
       expect(updated_deck.deleted_at).to be_a Time
     end
   end
+
+  describe '#publish' do
+    subject { repo.publish(deck.id) }
+
+    let(:deck) { repo.create(account_id: account.id, title: 'title', published: false) }
+    let(:updated_deck) { repo.find(deck.id) }
+
+    it 'update deleted_at value' do
+      expect(deck.published).to be false
+      subject
+      expect(updated_deck.published).to be true
+    end
+  end
 end

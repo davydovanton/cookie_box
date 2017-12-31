@@ -6,4 +6,8 @@ class DeckRepository < Hanami::Repository
   def archive(id)
     update(id, deleted_at: Time.now)
   end
+
+  def publish(id)
+    update(id, published: true)
+  end
 end
