@@ -31,4 +31,17 @@ RSpec.describe DeckRepository, type: :repository do
       it { expect(subject).to eq [] }
     end
   end
+
+  describe '#archive' do
+    subject { repo.archive(deck.id) }
+
+    let(:deck) { repo.create(account_id: account.id, title: 'test') }
+    let(:updated_deck) { repo.find(deck.id) }
+
+    it 'update deleted_at value' do
+      expect(deck.deleted_at).to be nil
+      subject
+      expect(updated_deck.deleted_at).to be_a Time
+    end
+  end
 end

@@ -1,5 +1,3 @@
-require 'dry/transaction'
-
 module Decks
   module Operations
     class Create < Core::Operation
