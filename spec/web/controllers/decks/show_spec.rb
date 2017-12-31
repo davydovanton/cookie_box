@@ -30,6 +30,7 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
       let(:deck) { Deck.new(account_id: 2) }
 
       it { expect(action.call(params)).to have_http_status(404) }
+      it { expect(action.call(params)).to match_in_body('Not found') }
 
       it 'calls operation with current account id' do
         action.call(params)
@@ -40,6 +41,7 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
       let(:mock_operation) { Mock::FailListOperation.new }
 
       it { expect(action.call(params)).to have_http_status(404) }
+      it { expect(action.call(params)).to match_in_body('Not found') }
     end
   end
 

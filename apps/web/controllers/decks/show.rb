@@ -8,7 +8,7 @@ module Web::Controllers::Decks
 
     def call(params)
       operation.call(params[:id]).fmap { |value| @deck = value }
-      self.status = 404 if deck_protected?
+      status 404, 'Not found' if deck_protected?
     end
 
   private
