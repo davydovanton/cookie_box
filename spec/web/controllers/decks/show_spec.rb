@@ -37,6 +37,18 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
       end
     end
 
+    context 'and operation returns public not account deck' do
+      before { allow(mock_operation).to receive(:call).and_return(Right(deck)) }
+      let(:deck) { Deck.new(account_id: 2, published: true) }
+
+      it { expect(action.call(params)).to be_success }
+
+      it 'sets decs variable' do
+        action.call(params)
+        expect(action.deck).to eq deck
+      end
+    end
+
     context 'and operation returns fail result' do
       let(:mock_operation) { Mock::FailListOperation.new }
 
@@ -46,8 +58,26 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
   end
 
   context 'when account not login' do
+    before { allow(mock_operation).to receive(:call).and_return(Right(deck)) }
+    let(:deck) { Deck.new(account_id: 1) }
+
     let(:session) { {} }
 
-    it { expect(action.call(params)).to redirect_to('/') }
+    it { expect(action.call(params)).to have_http_status(404) }
+    it { expect(action.call(params)).to match_in_body('Not found') }
+  end
+
+  context 'when account not login but deck is public' do
+    before { allow(mock_operation).to receive(:call).and_return(Right(deck)) }
+    let(:deck) { Deck.new(account_id: 1, published: true) }
+
+    let(:session) { {} }
+
+    it { expect(action.call(params)).to be_success }
+
+    it 'sets decs variable' do
+      action.call(params)
+      expect(action.deck).to eq deck
+    end
   end
 end

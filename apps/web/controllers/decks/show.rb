@@ -3,7 +3,6 @@ module Web::Controllers::Decks
     include Web::Action
     include Import[operation: 'decks.operations.show']
 
-    before :authenticate!
     expose :deck
 
     def call(params)
@@ -14,7 +13,8 @@ module Web::Controllers::Decks
   private
 
     def deck_protected?
-      @deck.nil? || @deck.account_id != current_account.id
+      return if @deck&.published
+      @deck.nil? || @deck.account_id != current_account&.id
     end
   end
 end
