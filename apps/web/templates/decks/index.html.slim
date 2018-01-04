@@ -4,7 +4,10 @@ div
   - decks.each do |deck|
     div
       = link_to deck.title, routes.deck_path(deck.id)
+      p Published: #{deck.published}
       = archive_form(deck)
+      = publish_button(deck)
+      hr
 
 div
   = link_to 'Logout', '/auth/logout'

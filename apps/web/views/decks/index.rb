@@ -20,5 +20,14 @@ module Web::Views::Decks
         input(type: "submit", value: "Archive")
       end
     end
+
+    def publish_button(deck)
+      return unless deck.published
+
+      form_for Form.new(:deck, routes.published_decks_path, { method: :post }), id: 'deck-form' do
+        hidden_field :id, value: deck.id
+        submit 'Publish'
+      end
+    end
   end
 end
