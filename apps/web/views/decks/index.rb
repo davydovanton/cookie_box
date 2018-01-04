@@ -22,7 +22,7 @@ module Web::Views::Decks
     end
 
     def publish_button(deck)
-      return unless deck.published
+      return if deck.published
 
       form_for Form.new(:deck, routes.published_decks_path, { method: :post }), id: 'deck-form' do
         hidden_field :id, value: deck.id
