@@ -6,8 +6,14 @@ module Web::Controllers::Repositories
     before :authenticate!
 
     def call(params)
-      operation.call(params[:repository][:deck_id], params[:repository][:id])
-      redirect_to routes.deck_path(params[:repository][:deck_id])
+      operation.call(params[:deck_id], params[:id])
+      redirect_to routes.deck_path(params[:deck_id])
+    end
+
+  private
+
+    def verify_csrf_token?
+      false
     end
   end
 end

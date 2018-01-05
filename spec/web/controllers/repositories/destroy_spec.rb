@@ -3,7 +3,7 @@ RSpec.describe Web::Controllers::Repositories::Destroy, type: :action do
 
   let(:mock_operation) { Mock::SuccessListOperation.new }
   let(:action) { described_class.new(operation: mock_operation) }
-  let(:params) { { 'rack.session' => session, repository: { deck_id: 1, id: 123 } } }
+  let(:params) { { 'rack.session' => session, deck_id: 1, id: 123 } }
 
   context 'when account login' do
     let(:session) { { account: Account.new(id: 1) } }
