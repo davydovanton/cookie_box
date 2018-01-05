@@ -23,6 +23,14 @@ Hanami.boot
 Hanami::Utils.require!("#{__dir__}/support")
 require 'rspec/hanami'
 
+require 'vcr'
+
+VCR.configure do |c|
+  c.hook_into :webmock
+  c.cassette_library_dir = 'spec/cassettes'
+  c.default_cassette_options = { record: :new_episodes }
+end
+
 RSpec.configure do |config|
   config.include RSpec::Hanami::Matchers
   # rspec-expectations config goes here. You can use an alternate

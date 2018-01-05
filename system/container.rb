@@ -12,6 +12,7 @@ class Container < Dry::System::Container
 
   #  Repositories
   register_folder! 'repositories/operations'
+  register_folder! 'repositories/libs'
 
   configure
 end
