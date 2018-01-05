@@ -1,10 +1,5 @@
 RSpec.describe DeckRepository, type: :repository do
-  let(:repository_repo) { RepositoryRepository.new }
-  let(:deck_repo_repo) { DeckRepoRepository.new }
-  let(:account_repo) { AccountRepository.new }
   let(:repo) { described_class.new }
-
-  after { deck_repo_repo.clear & repository_repo.clear & account_repo.clear & repo.clear }
 
   describe '#all_for_account' do
     let(:account) { Fabricate.create(:account) }
@@ -74,6 +69,8 @@ RSpec.describe DeckRepository, type: :repository do
 
   describe '#find_with_repos' do
     let(:deck) { Fabricate.create(:deck, title: 'title') }
+    let(:repository_repo) { RepositoryRepository.new }
+    let(:deck_repo_repo) { DeckRepoRepository.new }
 
     subject { repo.find_with_repos(deck.id) }
 

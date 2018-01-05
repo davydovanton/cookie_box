@@ -1,8 +1,6 @@
 RSpec.describe AccountRepository, type: :repository do
   let(:repo) { described_class.new }
 
-  after { repo.clear }
-
   describe '#find_by_uid' do
     subject { repo.find_by_uid(uid) }
 

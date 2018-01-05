@@ -27,6 +27,7 @@ end
 
 group :test, :development do
   gem 'dotenv', '~> 2.0'
+  gem 'database_cleaner'
 end
 
 group :test do
