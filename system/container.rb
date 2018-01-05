@@ -10,5 +10,8 @@ class Container < Dry::System::Container
   #  Decks
   register_folder! 'decks/operations'
 
+  #  Repositories
+  register_folder! 'repositories/operations'
+
   configure
 end
