@@ -1,4 +1,8 @@
 class DeckRepository < Hanami::Repository
+  associations do
+    has_many :repositories, through: :deck_repos
+  end
+
   def all_for_account(account_id)
     root.where(account_id: account_id, deleted_at: nil).map_to(Deck).to_a
   end
