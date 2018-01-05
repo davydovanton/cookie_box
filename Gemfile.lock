@@ -112,6 +112,8 @@ GEM
       dry-logic (~> 0.4, >= 0.4.0)
       dry-types (~> 0.11.0)
     fabrication (2.18.0)
+    faker (1.8.7)
+      i18n (>= 0.7)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     hanami (1.1.0)
@@ -170,6 +172,8 @@ GEM
     http_router (0.11.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
+    i18n (0.9.1)
+      concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     inflecto (0.0.2)
     json (2.1.0)
@@ -276,6 +280,7 @@ DEPENDENCIES
   dry-system (~> 0.9.0)
   dry-system-hanami!
   dry-transaction
+  faker
   hanami (~> 1.1)
   hanami-fabrication
   hanami-interactor-matcher!

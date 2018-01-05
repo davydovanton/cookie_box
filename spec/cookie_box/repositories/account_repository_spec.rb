@@ -9,7 +9,7 @@ RSpec.describe AccountRepository, type: :repository do
     let(:uid) { '12345' }
 
     context 'when account with uid exist' do
-      before { repo.create(uid: uid) }
+      before { Fabricate.create(:account, uid: uid) }
 
       it { expect(subject).to be_a Account }
     end

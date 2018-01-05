@@ -34,6 +34,7 @@ group :test do
   gem 'rspec-hanami', github: 'davydovanton/rspec-hanami'
   gem 'vcr'
   gem 'webmock'
+  gem 'faker'
   gem 'hanami-fabrication'
   gem 'capybara'
   gem 'simplecov', require: false
