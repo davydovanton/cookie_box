@@ -10,5 +10,18 @@ module Web::Views::Decks
         input(type: "submit", value: "Delete Repository")
       end
     end
+
+    def add_repository_form
+      form_for deck_form, id: 'deck-form' do
+        text_field :name
+        hidden_field :deck_id, value: deck.id
+
+        submit 'Add github repository to deck'
+      end
+    end
+
+    def deck_form
+      Form.new(:repository, routes.repositories_path, { method: :post })
+    end
   end
 end

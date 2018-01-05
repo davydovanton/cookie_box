@@ -9,3 +9,6 @@ div
         = link_to repo.full_name, repo.html_url
         - if deck.account_id == current_account.id
           = delete_repository_button(repo.id)
+
+  - if deck.account_id == current_account.id
+    = add_repository_form
