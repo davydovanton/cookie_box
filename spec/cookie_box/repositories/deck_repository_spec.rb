@@ -69,4 +69,28 @@ RSpec.describe DeckRepository, type: :repository do
       expect(updated_deck.published).to be true
     end
   end
+
+  describe '#find_with_repos' do
+    let(:repository_repo) { RepositoryRepository.new }
+    let(:deck_repo_repo) { DeckRepoRepository.new }
+    let(:deck) { repo.create(account_id: account.id, title: 'title') }
+
+    subject { repo.find_with_repos(deck.id) }
+
+    after { deck_repo_repo.clear & repository_repo.clear & account_repo.clear & repo.clear }
+
+    context 'when deck has repos' do
+      before do
+        repository = repository_repo.create(full_name: 'hanami/hanami')
+        deck_repo_repo.create(repository_id: repository.id, deck_id: deck.id)
+      end
+
+      it { expect(subject.repositories).not_to be_empty }
+      it { expect(subject.repositories.first).to be_a Repository }
+    end
+
+    context 'when deck has not repos' do
+      it { expect(subject.repositories).to eq [] }
+    end
+  end
 end

@@ -14,4 +14,8 @@ class DeckRepository < Hanami::Repository
   def publish(id)
     update(id, published: true)
   end
+
+  def find_with_repos(id)
+    aggregate(:repositories).map_to(Deck).by_pk(id).one
+  end
 end

@@ -1,1 +1,8 @@
 h1 = deck.title
+
+div
+  h4 Repositories
+
+  ul
+    - deck.repositories.each do |repo|
+      li = link_to repo.full_name, repo.html_url

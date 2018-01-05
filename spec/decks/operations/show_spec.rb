@@ -5,14 +5,14 @@ RSpec.describe Decks::Operations::Show do
   subject { operation.call(id) }
 
   context 'when deck exist' do
-    let(:deck_repo) { double(:deck_repo, find: Deck.new(id: 1)) }
+    let(:deck_repo) { double(:deck_repo, find_with_repos: Deck.new(id: 1)) }
 
     it { expect(subject).to be_right }
     it { expect(subject.value).to eq Deck.new(id: 1) }
   end
 
   context 'when deck unexist' do
-    let(:deck_repo) { double(:deck_repo, find: nil) }
+    let(:deck_repo) { double(:deck_repo, find_with_repos: nil) }
 
     it { expect(subject).to be_left }
     it { expect(subject.value).to eq :not_found }
