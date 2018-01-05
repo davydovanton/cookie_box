@@ -5,6 +5,7 @@ class Container < Dry::System::Container
   extend Dry::System::Hanami::Resolver
 
   #  Core
+  register_folder! 'cookie_box/core'
   register_folder! 'cookie_box/repositories'
 
   #  Decks
