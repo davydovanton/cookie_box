@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'hanami',       '~> 1.1'
 gem 'hanami-model', '~> 1.1'
+gem 'bootsnap', require: false
 
 gem 'pg'
 

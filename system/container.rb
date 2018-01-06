@@ -4,6 +4,8 @@ require 'dry/system/hanami'
 class Container < Dry::System::Container
   extend Dry::System::Hanami::Resolver
 
+  use :bootsnap
+
   #  Core
   register_folder! 'cookie_box/core'
   register_folder! 'cookie_box/repositories'
