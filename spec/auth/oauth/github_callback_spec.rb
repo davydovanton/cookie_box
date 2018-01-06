@@ -3,7 +3,7 @@ RSpec.describe Auth::Oauth::GithubCallback do
 
   let(:repo) { AccountRepository.new }
   let(:callback) { described_class.new({}) }
-  let(:params) { { 'info' => {}, 'uid' => uid } }
+  let(:params) { { 'credentials' => {}, 'info' => {}, 'uid' => uid } }
   let(:uid) { '12345' }
 
   subject { callback.call(params) }

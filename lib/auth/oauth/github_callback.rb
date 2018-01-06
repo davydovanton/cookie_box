@@ -16,6 +16,7 @@ module Auth
       def oauth_data(data)
         {
           uid:        data['uid'],
+          token:      data['credentials']['token'],
           login:      data['info']['nickname'],
           email:      data['info']['email'],
           name:       data['info']['name'],

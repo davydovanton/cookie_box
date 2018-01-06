@@ -4,6 +4,7 @@ Hanami::Model.migration do
       primary_key :id
 
       column :uid,        String
+      column :token,      String
       column :name,       String
       column :login,      String
       column :email,      String
