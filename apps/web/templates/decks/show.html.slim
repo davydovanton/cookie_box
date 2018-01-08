@@ -12,3 +12,17 @@ div
 
   - if deck.account_id == current_account.id
     = add_repository_form
+
+hr
+
+div
+  h4 Issues
+
+  ul
+    - issues.each do |issue|
+      li
+        = link_to "#{issue.title} (#{issue.state})", issue.html_url
+        div
+          | Labels: 
+          - issue.labels.each do |label|
+            span = label['name']
