@@ -12,7 +12,20 @@ module Repositories
         response = http_request.get(GITHUB_ISSUE_API_URL % { full_name: repository.full_name })
         return Left(:invalid_repo_name) unless response.is_a?(Net::HTTPSuccess)
 
-        data = JSON.parse(response.body).select { |d| d['pull_request'].nil? }
+        data = JSON.parse(response.body).select { |d| d['pull_request'].nil? }.map do |payload|
+          {
+            title: payload['title'],
+            html_url: payload['html_url'],
+            state: payload['state'],
+            comments: payload['comments'],
+            locked: payload['locked'],
+            labels: payload['labels'],
+            author: payload['user'],
+            assignees: payload['assignees'],
+            created_at: payload['created_at'],
+            closed_at: payload['closed_at']
+          }
+        end
         Right(data)
       end
     end
