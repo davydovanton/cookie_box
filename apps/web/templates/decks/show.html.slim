@@ -25,4 +25,14 @@ div
         div
           | Labels: 
           - issue.labels.each do |label|
-            span = label['name']
+            span '#{label['name']}'
+
+        div
+          | Author: 
+          = link_to issue.author[:login], issue.author[:html_url]
+
+        div
+          | Repository: 
+          = link_to issue.repository_id, '#'
+
+        br
