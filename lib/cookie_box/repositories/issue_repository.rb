@@ -9,6 +9,7 @@ class IssueRepository < Hanami::Repository
     root
       .join(:repositories)
       .join(:deck_repos, repositories[:id].qualified => deck_repos[:repository_id].qualified)
-      .where(deck_repos[:repository_id].qualified => 1).map_to(Issue).to_a
+      .where(deck_repos[:deck_id].qualified => deck_id)
+      .map_to(Issue).to_a
   end
 end
