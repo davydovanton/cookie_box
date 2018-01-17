@@ -2,6 +2,14 @@ module Web::Views::Decks
   class Index
     include Web::View
 
+    def auth_button
+      if current_account.login
+        link_to 'Logout', '/auth/logout'
+      else
+        link_to 'Login', '/auth/github'
+      end
+    end
+
     def form
       form_for deck_form, id: 'deck-form' do
         text_field :title

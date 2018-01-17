@@ -1,9 +1,16 @@
 RSpec.describe Web::Controllers::Home::Index, type: :action do
   let(:action) { described_class.new }
-  let(:params) { Hash[] }
+  let(:params)  { { 'rack.session' => session } }
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
+  context 'when account login' do
+    let(:session) { { account: Account.new(id: 1) } }
+
+    it { expect(action.call(params)).to redirect_to('/decks') }
+  end
+
+  context 'when account not login' do
+    let(:session) { {} }
+
+    it { expect(action.call(params)).to be_success }
   end
 end
