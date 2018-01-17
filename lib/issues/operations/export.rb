@@ -5,14 +5,16 @@ module Issues
 
       def call(repository_id)
         repo_entity = repository.find(repository_id)
+        return Left(:not_found) unless repo_entity
 
         result = github_list.call(repo_entity)
 
         if result.right?
           result.value.each { |payload| issue.create(repository_id: repository_id, **payload) }
+          Right(:ok)
+        else
+          result
         end
-
-        Right(:ok)
       end
     end
   end
