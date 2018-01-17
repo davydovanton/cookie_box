@@ -6,8 +6,15 @@ gem 'hanami-model', '~> 1.1'
 gem 'bootsnap', require: false
 
 gem 'pg'
+gem 'redis', '~>3.2'
+gem 'hiredis'
+gem 'mock_redis'
+gem 'connection_pool'
 
 gem 'slim'
+
+# background
+gem 'sidekiq'
 
 # dependencies and DI
 gem 'dry-system', '~> 0.9.0'

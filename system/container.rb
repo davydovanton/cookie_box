@@ -20,6 +20,7 @@ class Container < Dry::System::Container
   #  Issues
   register_folder! 'issues/operations'
   register_folder! 'issues/libs'
+  register_folder! 'issues/workers', resolver: ->(k) { k }
 
   configure
 end
