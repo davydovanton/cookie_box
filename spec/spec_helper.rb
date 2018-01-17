@@ -24,6 +24,9 @@ Hanami.boot
 Hanami::Utils.require!("#{__dir__}/support")
 require 'rspec/hanami'
 
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
+
 require 'vcr'
 
 VCR.configure do |c|
