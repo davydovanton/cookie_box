@@ -1,5 +1,5 @@
 RSpec.describe Web::Views::Decks::Show, type: :view do
-  let(:exposures) { { issues: [], params: {}, deck: deck, current_account: current_account } }
+  let(:exposures) { { issues: { open: [], closed: [] }, params: {}, deck: deck, current_account: current_account } }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/decks/show.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
