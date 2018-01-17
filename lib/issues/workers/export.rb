@@ -1,6 +1,6 @@
 module Issues
   module Workers
-    class IssueExport
+    class Export
       include Sidekiq::Worker
       include Import[operation: 'issues.operations.export']
 
