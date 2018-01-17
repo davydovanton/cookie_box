@@ -1,9 +1,7 @@
 module Repositories
   module Operations
     class Create < Core::Operation
-      include Import[
-        'repositories.deck_repo', 'repositories.libs.get_or_create_repo', 'issues.workers.export'
-      ]
+      include Import['repositories.deck_repo', 'repositories.libs.get_or_create_repo']
 
       VALIDATOR = Dry::Validation.Form do
         required(:deck_id).filled(:int?)
@@ -16,7 +14,6 @@ module Repositories
 
         get_or_create_repo.call(repo_name).fmap do |repo|
           deck_repo.create(deck_id: deck_id, repository_id: repo.id)
-          export.perform_async(repo.id)
         end
       end
     end

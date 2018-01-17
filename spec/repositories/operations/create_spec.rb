@@ -21,8 +21,6 @@ RSpec.describe Repositories::Operations::Create do
         expect(deck_repo_mock).to receive(:create).with(deck_id: 1, repository_id: 1)
         subject
       end
-
-      it { expect{ subject }.to change(Issues::Workers::Export.jobs, :size).by(1) }
     end
 
     context 'and repository does not exist' do
