@@ -15,24 +15,47 @@ div
 
 hr
 
-div
-  h4 Issues
+h4 Issues
+.issues_container
+  .issues
+    h5 Open
 
-  ul
-    - issues.each do |issue|
-      li
-        = link_to "#{issue.title} (#{issue.state})", issue.html_url
-        div
-          | Labels: 
-          - issue.labels.each do |label|
-            span '#{label['name']}'
+    ul
+      - issues[:open].each do |issue|
+        li
+          = link_to issue.title, issue.html_url
+          div
+            | Labels:
+            - issue.labels.each do |label|
+              span '#{label['name']}'
 
-        div
-          | Author: 
-          = link_to issue.author[:login], issue.author[:html_url]
+          div
+            | Author:
+            = link_to issue.author[:login], issue.author[:html_url]
 
-        div
-          | Repository: 
-          = link_to issue.repository_id, '#'
+          div
+            | Repository:
+            = link_to issue.repository_id, '#'
 
-        br
+          br
+
+  .issues
+    h5 Closed
+    ul
+      - issues[:closed].each do |issue|
+        li
+          = link_to issue.title, issue.html_url
+          div
+            | Labels:
+            - issue.labels.each do |label|
+              span '#{label['name']}'
+
+          div
+            | Author:
+            = link_to issue.author[:login], issue.author[:html_url]
+
+          div
+            | Repository:
+            = link_to issue.repository_id, '#'
+
+          br
