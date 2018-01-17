@@ -17,5 +17,9 @@ class Container < Dry::System::Container
   register_folder! 'repositories/operations'
   register_folder! 'repositories/libs'
 
+  #  Issues
+  register_folder! 'issues/operations'
+  register_folder! 'issues/libs'
+
   configure
 end
