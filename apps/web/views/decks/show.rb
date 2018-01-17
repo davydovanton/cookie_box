@@ -2,6 +2,10 @@ module Web::Views::Decks
   class Show
     include Web::View
 
+    def link_to_repository(repo)
+      link_to repo.full_name, repo.html_url
+    end
+
     def delete_repository_button(repository_id)
       html.form(action: "/repositories/#{repository_id}", method: "POST") do
         input(type: "hidden", name: "_method", value: "DELETE")

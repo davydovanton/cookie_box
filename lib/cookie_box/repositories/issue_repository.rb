@@ -6,7 +6,7 @@ class IssueRepository < Hanami::Repository
   end
 
   def all_for_deck(deck_id)
-    root
+    aggregate(:repository)
       .join(:repositories)
       .join(:deck_repos, repositories[:id].qualified => deck_repos[:repository_id].qualified)
       .where(deck_repos[:deck_id].qualified => deck_id)

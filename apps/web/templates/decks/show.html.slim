@@ -6,7 +6,7 @@ div
   ul
     - deck.repositories.each do |repo|
       li
-        = link_to repo.full_name, repo.html_url
+        = link_to_repository(repo)
         - if deck.account_id == current_account.id
           = delete_repository_button(repo.id)
 
@@ -35,7 +35,7 @@ h4 Issues
 
           div
             | Repository:
-            = link_to issue.repository_id, '#'
+            = link_to_repository(issue.repository)
 
           br
 
@@ -56,6 +56,6 @@ h4 Issues
 
           div
             | Repository:
-            = link_to issue.repository_id, '#'
+            = link_to_repository(issue.repository)
 
           br
