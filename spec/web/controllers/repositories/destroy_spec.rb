@@ -14,7 +14,7 @@ RSpec.describe Web::Controllers::Repositories::Destroy, type: :action do
       it { expect(action.call(params)).to redirect_to('/decks/1') }
 
       it 'calls operation with current account id' do
-        expect(mock_operation).to receive(:call).with(1, 123)
+        expect(mock_operation).to receive(:call).with(deck_id: 1, repository_id: 123)
         action.call(params)
       end
     end
@@ -25,7 +25,7 @@ RSpec.describe Web::Controllers::Repositories::Destroy, type: :action do
       it { expect(action.call(params)).to redirect_to('/decks/1') }
 
       it 'calls operation with current account id' do
-        expect(mock_operation).to receive(:call).with(1, 123)
+        expect(mock_operation).to receive(:call).with(deck_id: 1, repository_id: 123)
         action.call(params)
       end
     end

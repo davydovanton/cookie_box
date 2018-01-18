@@ -4,7 +4,7 @@ RSpec.describe Repositories::Operations::Delete do
   let(:lib) { described_class.new(deck_repo: deck_repo_mock) }
   let(:deck_repo_mock) { double(:deck_repo, delete_from_deck: true) }
 
-  subject { lib.call(deck_id, repository_id) }
+  subject { lib.call(deck_id: deck_id, repository_id: repository_id) }
 
   context 'when params valid' do
     let(:deck_id) { 1 }

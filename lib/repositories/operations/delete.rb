@@ -1,18 +1,25 @@
+require 'dry/transaction'
+
 module Repositories
   module Operations
     class Delete < Core::Operation
+      include Dry::Transaction
       include Import['repositories.deck_repo']
+
+      step :validate
+      step :persist
 
       VALIDATOR = Dry::Validation.Form do
         required(:deck_id).filled(:int?)
         required(:repository_id).filled(:int?)
       end
 
-      def call(deck_id, repository_id)
-        result = VALIDATOR.call(deck_id: deck_id, repository_id: repository_id).to_either
-        return result if result.left?
+      def validate(payload)
+        VALIDATOR.call(payload).to_either
+      end
 
-        Right(deck_repo.delete_from_deck(deck_id, repository_id))
+      def persist(payload)
+        Right(deck_repo.delete_from_deck(payload[:deck_id], payload[:repository_id]))
       end
     end
   end
