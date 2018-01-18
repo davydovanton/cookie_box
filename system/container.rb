@@ -5,6 +5,7 @@ class Container < Dry::System::Container
   extend Dry::System::Hanami::Resolver
 
   use :bootsnap
+  use :env
 
   #  Core
   register_folder! 'cookie_box/core'
@@ -22,5 +23,7 @@ class Container < Dry::System::Container
   register_folder! 'issues/libs'
   register_folder! 'issues/workers', resolver: ->(k) { k }
 
-  configure
+  configure do |config|
+    config.env = Hanami.env
+  end
 end
