@@ -6,7 +6,7 @@ RSpec.describe Repositories::Operations::Create do
   let(:get_or_create_repo_mock) { double(:get_or_create_repo, call: repo_result) }
   let(:repo_result) { Right(Repository.new(id: 1)) }
 
-  subject { lib.call(deck_id, repo_name) }
+  subject { lib.call(deck_id: deck_id, repo_name: repo_name) }
 
   context 'when params valid' do
     let(:deck_id) { 1 }

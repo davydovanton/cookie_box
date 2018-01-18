@@ -6,7 +6,7 @@ module Web::Controllers::Repositories
     before :authenticate!
 
     def call(params)
-      operation.call(params[:repository][:deck_id], params[:repository][:name])
+      operation.call(deck_id: params[:repository][:deck_id], repo_name: params[:repository][:name])
       redirect_to routes.deck_path(params[:repository][:deck_id])
     end
   end

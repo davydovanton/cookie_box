@@ -14,7 +14,7 @@ RSpec.describe Web::Controllers::Repositories::Create, type: :action do
       it { expect(action.call(params)).to redirect_to('/decks/1') }
 
       it 'calls operation with current account id' do
-        expect(mock_operation).to receive(:call).with(1, 'hanami/hanami')
+        expect(mock_operation).to receive(:call).with(deck_id: 1, repo_name: 'hanami/hanami')
         action.call(params)
       end
     end
@@ -25,7 +25,7 @@ RSpec.describe Web::Controllers::Repositories::Create, type: :action do
       it { expect(action.call(params)).to redirect_to('/decks/1') }
 
       it 'calls operation with current account id' do
-        expect(mock_operation).to receive(:call).with(1, 'hanami/hanami')
+        expect(mock_operation).to receive(:call).with(deck_id: 1, repo_name: 'hanami/hanami')
         action.call(params)
       end
     end
