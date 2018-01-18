@@ -30,7 +30,7 @@ RSpec.describe Issues::Operations::Export do
 
     it 'saves issues and returns right result' do
       expect(issue_repo).to receive(:create).with(repository_id: 1, title: 'title')
-      expect(subject).to eq Right(:ok)
+      expect(subject).to be_right
     end
   end
 end

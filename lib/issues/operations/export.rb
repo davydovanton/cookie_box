@@ -7,13 +7,10 @@ module Issues
         repo_entity = repository.find(repository_id)
         return Left(:not_found) unless repo_entity
 
-        result = github_list.call(repo_entity)
-
-        if result.right?
-          result.value.each { |payload| issue.create(repository_id: repository_id, **payload) }
-          Right(:ok)
-        else
-          result
+        github_list.call(repo_entity).fmap do |issues_payload|
+          issues_payload.each do |payload|
+            issue.create(repository_id: repository_id, **payload)
+          end
         end
       end
     end
