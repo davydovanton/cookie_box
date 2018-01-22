@@ -1,3 +1,12 @@
 /public/assets*
+/public/*
 /tmp
+/node_modules
 /coverage
+/log/*.log
+/.env.local
+/.idea/**
+npm-debug.log
+.env.development
+.env.test
+.byebug_history

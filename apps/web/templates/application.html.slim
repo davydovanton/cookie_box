@@ -5,6 +5,10 @@ html
       | Web
     = favicon
 
-    = stylesheet 'main'
   body
     = yield
+
+    - if Hanami.env?(:development)
+      script src=webpack_asset_path('web')
+    - else
+      script src="/#{webpack_asset_path('web').split('/')[1]}"

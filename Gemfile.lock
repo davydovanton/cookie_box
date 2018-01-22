@@ -38,6 +38,13 @@ GIT
       omniauth (~> 1.5)
       omniauth-oauth2 (>= 1.4.0, < 2.0)
 
+GIT
+  remote: git://github.com/samuelsimoes/hanami-webpack.git
+  revision: 1019f8efc217c9ae7290e220bf2c9e05ddd603ae
+  specs:
+    hanami-webpack (0.0.1)
+      hanami
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -303,6 +310,7 @@ DEPENDENCIES
   hanami-fabrication
   hanami-interactor-matcher!
   hanami-model (~> 1.1)
+  hanami-webpack!
   hiredis
   mock_redis
   omniauth

@@ -239,15 +239,15 @@ module Web
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self';
-        connect-src 'self';
+        script-src 'self' 'unsafe-inline' http: https:;
+        connect-src 'self' 'unsafe-inline' http: https:;
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;
-        font-src 'self';
+        font-src 'self' data: 'unsafe-inline' https:;
         object-src 'none';
         plugin-types application/pdf;
         child-src 'self';
-        frame-src 'self';
+        frame-src 'self' 'unsafe-inline' http: https:;
         media-src 'self'
       }
 

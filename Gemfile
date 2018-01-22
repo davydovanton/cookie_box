@@ -11,8 +11,6 @@ gem 'hiredis'
 gem 'mock_redis'
 gem 'connection_pool'
 
-gem 'slim'
-
 # background
 gem 'sidekiq'
 
@@ -26,6 +24,11 @@ gem 'dry-transaction'
 gem 'omniauth'
 gem 'omniauth-github', github: 'intridea/omniauth-github'
 gem 'web_bouncer',     github: 'davydovanton/web_bouncer'
+
+# frontend
+gem 'slim'
+
+gem 'hanami-webpack', github: 'samuelsimoes/hanami-webpack'
 
 group :development do
   # Code reloading
