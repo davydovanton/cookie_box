@@ -15,7 +15,7 @@ module Repositories
         return result if result.left?
 
         get_or_create_repo.call(payload[:repo_name]).fmap do |repo|
-          deck_repo.create(deck_id: payload[:deck_id], repository_id: repo.id)
+          deck_repo.select_or_create(deck_id: payload[:deck_id], repository_id: repo.id)
         end
       end
     end

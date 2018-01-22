@@ -2,7 +2,7 @@ RSpec.describe Repositories::Operations::Create do
   include Dry::Monads::Either::Mixin
 
   let(:lib) { described_class.new(deck_repo: deck_repo_mock, get_or_create_repo: get_or_create_repo_mock) }
-  let(:deck_repo_mock) { double(:deck_repo, create: DeckRepo.new) }
+  let(:deck_repo_mock) { double(:deck_repo, select_or_create: DeckRepo.new) }
   let(:get_or_create_repo_mock) { double(:get_or_create_repo, call: repo_result) }
   let(:repo_result) { Right(Repository.new(id: 1)) }
 
@@ -18,7 +18,7 @@ RSpec.describe Repositories::Operations::Create do
       it { expect(subject).to be_right }
 
       it 'creates a new repo <-> deck association' do
-        expect(deck_repo_mock).to receive(:create).with(deck_id: 1, repository_id: 1)
+        expect(deck_repo_mock).to receive(:select_or_create).with(deck_id: 1, repository_id: 1)
         subject
       end
     end
@@ -29,7 +29,7 @@ RSpec.describe Repositories::Operations::Create do
       it { expect(subject).to be_left }
 
       it 'creates a new repo <-> deck association' do
-        expect(deck_repo_mock).to receive(:create).exactly(0).times
+        expect(deck_repo_mock).to receive(:select_or_create).exactly(0).times
         subject
       end
     end
