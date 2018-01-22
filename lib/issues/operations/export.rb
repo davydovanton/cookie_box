@@ -1,7 +1,10 @@
 module Issues
   module Operations
     class Export < Core::Operation
-      include Import['repositories.repository', 'repositories.issue', 'issues.libs.github_list']
+      include Import[
+        'repositories.repository', 'repositories.issue',
+        'issues.libs.github_list', :logger
+      ]
 
       def call(repository_id)
         repo_entity = repository.find(repository_id)
@@ -15,7 +18,7 @@ module Issues
       def create_issue(payload)
         issue.create(payload)
       rescue Hanami::Model::UniqueConstraintViolationError
-        nil
+        logger.error "Issue alredy exist: #{payload[:html_url]}"
       end
     end
   end
