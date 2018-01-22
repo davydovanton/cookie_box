@@ -6,7 +6,7 @@ Hanami::Model.migration do
       foreign_key :repository_id, :repositories, on_delete: :cascade, null: false
 
       column :title,    String,    null: false
-      column :html_url, String,    null: false
+      column :html_url, String,    null: false, unique: true
       column :state,    String,    null: false
       column :comments, Integer,   default: 0
       column :locked,   TrueClass, default: false

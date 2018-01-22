@@ -8,10 +8,14 @@ module Issues
         return Left(:not_found) unless repo_entity
 
         github_list.call(repo_entity).fmap do |issues_payload|
-          issues_payload.each do |payload|
-            issue.create(repository_id: repository_id, **payload)
-          end
+          issues_payload.each { |payload| create_issue(repository_id: repository_id, **payload) }
         end
+      end
+
+      def create_issue(payload)
+        issue.create(payload)
+      rescue Hanami::Model::UniqueConstraintViolationError
+        nil
       end
     end
   end
