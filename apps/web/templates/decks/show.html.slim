@@ -21,7 +21,7 @@ h4 Issues
     h5 Open
 
     ul
-      - issues[:open].each do |issue|
+      - Array(issues[:open]).each do |issue|
         li
           = link_to issue.title, issue.html_url
           div
@@ -42,7 +42,7 @@ h4 Issues
   .issues
     h5 Closed
     ul
-      - issues[:closed].each do |issue|
+      - Array(issues[:closed]).each do |issue|
         li
           = link_to issue.title, issue.html_url
           div
