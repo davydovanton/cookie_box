@@ -3,6 +3,8 @@ var path = require("path"),
     StatsPlugin = require("stats-webpack-plugin"),
     ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+const { CheckerPlugin } = require('awesome-typescript-loader')
+
 var devServerPort = process.env.WEBPACK_DEV_SERVER_PORT,
     devServerHost = process.env.WEBPACK_DEV_SERVER_HOST,
     publicPath = process.env.WEBPACK_PUBLIC_PATH;
@@ -23,12 +25,13 @@ var config = {
   },
 
   plugins: [
-    new StatsPlugin("webpack_manifest.json")
+    new StatsPlugin("webpack_manifest.json"),
+    new CheckerPlugin()
   ],
 
   loaders: [{
       test: /\.tsx?$/,
-      loaders: ['ts-loader'],
+      loaders: ['awesome-typescript-loader'],
       exclude: /node_modules/
     },
     {
@@ -40,7 +43,7 @@ var config = {
   module: {
     loaders: [{
       test: /\.tsx?$/,
-      loaders: ['ts-loader'],
+      loaders: ['awesome-typescript-loader'],
       exclude: /node_modules/
     },
     {
@@ -67,7 +70,7 @@ if (process.env.INBUILT_WEBPACK_DEV_SERVER === 'false') {
   config.plugins.push(new ExtractTextPlugin("[name].css"))
   config.loaders = [ {
       test: /\.tsx?$/,
-      loaders: ['ts-loader'],
+      loaders: ['awesome-typescript-loader'],
       exclude: /node_modules/
     },
     {
@@ -77,7 +80,7 @@ if (process.env.INBUILT_WEBPACK_DEV_SERVER === 'false') {
   ]
   config.module.loaders = [{
     test: /\.tsx?$/,
-    loaders: ['ts-loader'],
+    loaders: ['awesome-typescript-loader'],
     exclude: /node_modules/
   },
   {
