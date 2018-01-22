@@ -10,7 +10,7 @@ var devServerPort = process.env.WEBPACK_DEV_SERVER_PORT,
 var config = {
   target: 'node',
   entry: {
-    web: "./apps/web/assets/javascripts/main.js"
+    web: "./apps/web/assets/javascripts/main.ts"
   },
 
   output: {
@@ -26,7 +26,11 @@ var config = {
     new StatsPlugin("webpack_manifest.json")
   ],
 
-  loaders: [
+  loaders: [{
+      test: /\.tsx?$/,
+      loaders: ['ts-loader'],
+      exclude: /node_modules/
+    },
     {
       test: /\.scss$/,
       loaders: ["style-loader", "css-loader", "sass-loader"]
@@ -35,6 +39,11 @@ var config = {
 
   module: {
     loaders: [{
+      test: /\.tsx?$/,
+      loaders: ['ts-loader'],
+      exclude: /node_modules/
+    },
+    {
       test: /\.scss$/,
       loaders: ["style-loader", "css-loader", "sass-loader"]
     },
@@ -56,13 +65,22 @@ if (process.env.INBUILT_WEBPACK_DEV_SERVER === 'true') {
 if (process.env.INBUILT_WEBPACK_DEV_SERVER === 'false') {
   // config.plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true }))
   config.plugins.push(new ExtractTextPlugin("[name].css"))
-  config.loaders = [
+  config.loaders = [ {
+      test: /\.tsx?$/,
+      loaders: ['ts-loader'],
+      exclude: /node_modules/
+    },
     {
       test: /\.s?css$/, 
       loader: ExtractTextPlugin.extract("style-loader", "css!sass")
     }
   ]
   config.module.loaders = [{
+    test: /\.tsx?$/,
+    loaders: ['ts-loader'],
+    exclude: /node_modules/
+  },
+  {
     test: /\.s?css$/, 
     loader: ExtractTextPlugin.extract("style-loader", "css!sass")
   }]
