@@ -49,3 +49,11 @@ request; Questions, clarifications, and so on.
 
 ## How to install project
 
+```
+$ bundle install
+$ bundle exec hanami db prepare
+$ HANAMI_ENV=test bundle exec hanami db prepare
+$ npm install
+$ bundle exec rspec
+$ bundle exec hanami s
+```
