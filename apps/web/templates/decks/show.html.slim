@@ -1,7 +1,16 @@
-h1 = deck.title
+.container
+  .row.header
+    .col-9
+      h1
+        = link_to 'decks', routes.decks_path, class: 'header__decks'
+        = " / #{deck.title}"
+    .col-3.header__logout
+      = link_to 'Logout', '/auth/logout'
 
-div
-  h4 Repositories
+
+  .row
+    .col-12
+      h4 Repositories
 
   ul
     - deck.repositories.each do |repo|
