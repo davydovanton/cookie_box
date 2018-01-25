@@ -3,7 +3,7 @@
     .col-9
       h1
         = link_to 'decks', routes.decks_path, class: 'header__decks'
-        = " / #{deck.title}"
+        = " > #{deck.title}"
     .col-3.header__logout
       = link_to 'Logout', '/auth/logout'
 
@@ -12,59 +12,60 @@
     .col-12
       h4 Repositories
 
-  ul
-    - deck.repositories.each do |repo|
-      li
-        = link_to_repository(repo)
-        - if deck.account_id == current_account.id
-          = delete_repository_button(repo.id)
+      ul
+        - deck.repositories.each do |repo|
+          li
+            = link_to_repository(repo)
+            - if deck.account_id == current_account.id
+              = delete_repository_button(repo.id)
 
-  - if deck.account_id == current_account.id
-    = add_repository_form
+      - if deck.account_id == current_account.id
+        = add_repository_form
 
-hr
+  .row
+    .col-12
+      h4 Issues
 
-h4 Issues
-.issues_container
-  .issues
-    h5 Open
+      .issues_container
+        .issues
+          h5 Open
 
-    ul
-      - Array(issues[:open]).each do |issue|
-        li
-          = link_to issue.title, issue.html_url
-          div
-            | Labels:
-            - issue.labels.each do |label|
-              span '#{label['name']}'
+          ul
+            - Array(issues[:open]).each do |issue|
+              li
+                = link_to issue.title, issue.html_url
+                div
+                  | Labels:
+                  - issue.labels.each do |label|
+                    span '#{label['name']}'
 
-          div
-            | Author:
-            = link_to issue.author[:login], issue.author[:html_url]
+                div
+                  | Author:
+                  = link_to issue.author[:login], issue.author[:html_url]
 
-          div
-            | Repository:
-            = link_to_repository(issue.repository)
+                div
+                  | Repository:
+                  = link_to_repository(issue.repository)
 
-          br
+                br
 
-  .issues
-    h5 Closed
-    ul
-      - Array(issues[:closed]).each do |issue|
-        li
-          = link_to issue.title, issue.html_url
-          div
-            | Labels:
-            - issue.labels.each do |label|
-              span '#{label['name']}'
+        .issues
+          h5 Closed
+          ul
+            - Array(issues[:closed]).each do |issue|
+              li
+                = link_to issue.title, issue.html_url
+                div
+                  | Labels:
+                  - issue.labels.each do |label|
+                    span '#{label['name']}'
 
-          div
-            | Author:
-            = link_to issue.author[:login], issue.author[:html_url]
+                div
+                  | Author:
+                  = link_to issue.author[:login], issue.author[:html_url]
 
-          div
-            | Repository:
-            = link_to_repository(issue.repository)
+                div
+                  | Repository:
+                  = link_to_repository(issue.repository)
 
-          br
+                br
