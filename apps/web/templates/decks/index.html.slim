@@ -16,7 +16,7 @@
             .deck__title
               = link_to deck.title, routes.deck_path(deck.id)
 
-            .deck__status Published: #{deck.published}
+            .deck__status = publish_status(deck)
 
             .deck__archive
               = archive_form(deck)

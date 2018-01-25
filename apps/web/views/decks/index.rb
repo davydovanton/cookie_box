@@ -37,5 +37,9 @@ module Web::Views::Decks
         submit 'Publish'
       end
     end
+
+    def publish_status(deck)
+      deck.published ? 'Public' : 'Private'
+    end
   end
 end
