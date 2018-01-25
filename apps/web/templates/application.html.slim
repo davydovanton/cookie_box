@@ -1,11 +1,18 @@
 doctype html
 html
   head
-    title
-      | Web
+    title Cookie Box
+
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    meta name="description" content="Follow issues from several repositories in one place"
+    meta property="og:image" content=""
+    link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"
+    = extra_styles
+
     = favicon
 
-  body
+  body.font-friendly
     = yield
 
     - if Hanami.env?(:development)

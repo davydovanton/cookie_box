@@ -9,5 +9,9 @@ module Web::Views::Home
         link_to 'Login', '/auth/github'
       end
     end
+
+    def extra_styles
+      html.link rel: 'stylesheet', href: 'https://www.launchaco.com/static/AllTemplates.min.css'
+    end
   end
 end
