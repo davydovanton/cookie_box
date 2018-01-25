@@ -17,8 +17,8 @@
 
     box-shadow: 0 0 10px rgba(33,33,33,.2);
 
-    flex: 0 0 200px;
-    height: 150px;
+    flex: 0 0 320px;
+    height: 250px;
     padding: 30px;
 
     &:hover {
@@ -31,6 +31,8 @@
     }
 
     .deck__status {
+      padding-top: 12px;
+      text-align: right;
       color: #e0c295;
     }
 
@@ -39,8 +41,8 @@
 
     .deck__archive {
       position: relative;
-      top: -90px;
-      left: 195px;
+      top: -80px;
+      left: 310px;
 
       input[type=submit] {
         cursor: pointer;

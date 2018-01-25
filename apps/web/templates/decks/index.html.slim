@@ -12,17 +12,30 @@
     .col-12
       .decks
         - decks.each do |deck|
-          .deck
-            .deck__title
-              = link_to deck.title, routes.deck_path(deck.id)
+          .deck.container
+            .row
+              .col-9
+                .deck__title
+                  = link_to deck.title, routes.deck_path(deck.id)
 
-            .deck__status = publish_status(deck)
+              .col-3
+                .deck__status = publish_status(deck)
 
             .deck__archive
               = archive_form(deck)
 
-            .deck__actions
-              = publish_button(deck)
+            .row
+              .col-12
+                | Reposiotries: 1
+
+            .row
+              .col-12
+                | Open issues: 1
+
+            .row
+              .col-12
+                .deck__actions
+                  = publish_button(deck)
 
         .deck
           .deck__title Create new deck
