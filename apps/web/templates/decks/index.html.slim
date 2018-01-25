@@ -1,17 +1,31 @@
-h1 Hello, #{current_account.name}
+.container.header
+  .row
+    .col-9
+      h1 Hello, #{current_account.name}
+    .col-3.header__logout
+      = link_to 'Logout', '/auth/logout'
 
-div
-  = auth_button
+  .row
+    .col-12
+      h2 Your decks
 
-div
-  h2 Decks
-  - decks.each do |deck|
-    div
-      = link_to deck.title, routes.deck_path(deck.id)
-      p Published: #{deck.published}
-      = archive_form(deck)
-      = publish_button(deck)
-      hr
+    .col-12
+      .decks
+        - decks.each do |deck|
+          .deck
+            .deck__title
+              = link_to deck.title, routes.deck_path(deck.id)
 
-div
-  = form
+            .deck__status Published: #{deck.published}
+
+            .deck__archive
+              = archive_form(deck)
+
+            .deck__actions
+              = publish_button(deck)
+
+        .deck
+          .deck__title Create new deck
+
+          .deck__create
+            = form

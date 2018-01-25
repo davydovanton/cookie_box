@@ -13,7 +13,7 @@ module Web::Views::Decks
     def form
       form_for deck_form, id: 'deck-form' do
         text_field :title
-        submit 'Add new deck'
+        submit '+'
       end
     end
 
@@ -25,7 +25,7 @@ module Web::Views::Decks
       html.form(action: "/decks/#{deck.id}", method: "POST") do
         input(type: "hidden", name: "_method", value: "DELETE")
         input(type: "hidden", name: "id",      value: deck.id)
-        input(type: "submit", value: "Archive")
+        input(type: "submit", value: "✕")
       end
     end
 

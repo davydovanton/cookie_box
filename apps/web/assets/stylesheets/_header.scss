@@ -1,0 +1,12 @@
+.header {
+  .header__logout {
+    font-size: 24px;
+    padding: 44px 0 0;
+    color: #666663;
+
+    a {
+      text-decoration: none;
+      &:hover { text-decoration: underline; }
+    }
+  }
+}

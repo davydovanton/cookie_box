@@ -1,0 +1,62 @@
+.decks {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-between;
+
+  .deck {
+    flex-grow: 1;
+    margin: 0 35px 40px 0;
+
+    transition: box-shadow .3s;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    background: #fff;
+    float: left;
+
+    box-shadow: 0 0 10px rgba(33,33,33,.2);
+
+    flex: 0 0 200px;
+    height: 150px;
+    padding: 30px;
+
+    &:hover {
+      box-shadow: 0 0 20px rgba(33,33,33,.2);
+    }
+
+    .deck__title {
+      margin: 5px 0 0;
+      font-size: 24px;
+    }
+
+    .deck__status {
+      color: #ccc;
+    }
+
+    .deck__actions {
+    }
+
+    .deck__archive {
+      position: relative;
+      top: -90px;
+      left: 195px;
+
+      input[type=submit] {
+        cursor: pointer;
+        font-size: 20px;
+        background: none;
+        border: none;
+      }
+    }
+
+    .deck__create {
+      margin: 15px 0;
+
+      input {
+        width: 70%;
+        margin-right: 5%;
+      }
+    }
+  }
+}
