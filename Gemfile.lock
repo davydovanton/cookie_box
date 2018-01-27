@@ -190,6 +190,7 @@ GEM
     inflecto (0.0.2)
     json (2.1.0)
     jwt (1.5.6)
+    kan (0.2.0)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     mini_mime (1.0.0)
@@ -312,6 +313,7 @@ DEPENDENCIES
   hanami-model (~> 1.1)
   hanami-webpack!
   hiredis
+  kan
   mock_redis
   omniauth
   omniauth-github!

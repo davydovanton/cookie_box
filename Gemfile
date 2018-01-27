@@ -24,6 +24,7 @@ gem 'dry-transaction'
 gem 'omniauth'
 gem 'omniauth-github', github: 'intridea/omniauth-github'
 gem 'web_bouncer',     github: 'davydovanton/web_bouncer'
+gem 'kan'
 
 # frontend
 gem 'slim'
