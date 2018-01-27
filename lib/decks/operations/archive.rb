@@ -3,8 +3,11 @@ module Decks
     class Archive < Core::Operation
       include Import['repositories.deck']
 
-      def call(deck_id:)
-        deck.archive(deck_id) if deck_id
+      def call(deck_id:, account_id:)
+        if deck.find(deck_id)&.account_id == account_id
+          deck.archive(deck_id)
+        end
+
         Right(:ok)
       end
     end
