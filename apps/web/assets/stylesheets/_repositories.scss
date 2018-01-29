@@ -1,0 +1,52 @@
+.repositories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-between;
+
+  .repository {
+    flex-grow: 1;
+    margin: 0 35px 20px 0;
+
+    transition: box-shadow .3s;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    background: #fff;
+    float: left;
+
+    box-shadow: 0 0 10px rgba(33,33,33,.2);
+
+    flex: 0 0 320px;
+    height: 85px;
+    padding: 10px 20px 20px;
+
+    &:hover {
+      box-shadow: 0 0 20px rgba(33,33,33,.2);
+    }
+
+    .repository__title {
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .repository__description {
+      margin: -30px 0 0;
+      font-size: 16px;
+      color: #666;
+    }
+
+    .repository__archive {
+      position: relative;
+      top: -45px;
+      left: 310px;
+
+      input[type=submit] {
+        cursor: pointer;
+        font-size: 20px;
+        background: none;
+        border: none;
+      }
+    }
+  }
+}

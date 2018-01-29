@@ -7,17 +7,22 @@
     .col-3.header__logout
       = link_to 'Logout', '/auth/logout'
 
-
   .row
     .col-12
-      h4 Repositories
+      h3 Repositories
 
-      ul
+      .repositories
         - deck.repositories.each do |repo|
-          li
-            = link_to_repository(repo)
-            - if deck.account_id == current_account.id
-              = delete_repository_button(repo.id)
+          .repository
+            .repository__title
+              = link_to_repository(repo)
+
+            .repository__archive
+              - if deck.account_id == current_account.id
+                = delete_repository_button(repo.id)
+
+            .repository__description
+              = repo.description
 
       - if deck.account_id == current_account.id
         = add_repository_form
