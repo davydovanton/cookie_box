@@ -4,7 +4,7 @@
       h1
         = link_to 'decks', routes.decks_path, class: 'header__decks'
         = " > #{deck.title}"
-    .col-3.header__logout
+    .col-3.header__logout.right
       = link_to 'Logout', '/auth/logout'
 
   .row

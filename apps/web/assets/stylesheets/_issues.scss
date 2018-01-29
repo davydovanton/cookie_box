@@ -25,21 +25,27 @@
   border: 1px solid #ccc;
   border-bottom: none;
 
+  &:hover {
+    background-color: rgba(242, 222, 197, 0.45);
+  }
+
   .issue__title {
-    font-size: 20px;
+    font-size: 22px;
+
+    a { color: #c6903e; }
   }
 
   .issue__labels {
-    margin-top: 5px;
+    margin-top: 10px;
   }
 
   .issue__repository {
-    font-size: 18px;
+    margin-top: 10px;
+    font-size: 16px;
+    a { color: #666; }
   }
 
   .issue__author {
-    margin-top: 5px;
-
     .issue__author-image {
       width: 24px;
       height: 24px;
