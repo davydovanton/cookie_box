@@ -5,7 +5,8 @@
         = link_to 'decks', routes.decks_path, class: 'header__decks'
         = " > #{deck.title}"
     .col-3.header__logout.right
-      = link_to 'Logout', '/auth/logout'
+      - if current_account.id
+        = link_to 'Logout', '/auth/logout'
 
   .row
     .col-12#repository-toggle
