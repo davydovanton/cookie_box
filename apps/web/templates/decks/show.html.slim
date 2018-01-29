@@ -8,10 +8,11 @@
       = link_to 'Logout', '/auth/logout'
 
   .row
-    .col-12
-      h3 Repositories
+    .col-12#repository-toggle
+      span Repositories
 
-      .repositories
+    .col-12
+      .repositories.hide
         - deck.repositories.each do |repo|
           .repository
             .repository__title

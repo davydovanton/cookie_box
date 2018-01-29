@@ -1,3 +1,18 @@
+#repository-toggle {
+  text-decoration-style: dotted;
+  cursor: pointer;
+
+  span {
+    font-size: 26px;
+  }
+
+  &:hover {
+    span {
+      border-bottom: 2px solid #333447;
+    }
+  }
+}
+
 .repositories {
   display: flex;
   flex-direction: row;
