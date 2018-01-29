@@ -12,7 +12,7 @@
       span Repositories
 
     .col-12
-      .repositories.hide
+      .repositories
         - deck.repositories.each do |repo|
           .repository
             .repository__title
@@ -29,49 +29,48 @@
         = add_repository_form
 
   .row
-    .col-12
-      h4 Issues
+    .col-12.issues
+      .issues__container
+        h5 Open / Closed
 
-      .issues_container
-        .issues
-          h5 Open
+        .issues__list.issues__list-open
+          - Array(issues[:open]).sort_by(&:created_at).reverse.each do |issue|
+            .issue.row
+              .col-8
+                .issue__title
+                  = link_to issue.title, issue.html_url
 
-          ul
-            - Array(issues[:open]).each do |issue|
-              li
-                = link_to issue.title, issue.html_url
-                div
-                  | Labels:
-                  - issue.labels.each do |label|
-                    span '#{label['name']}'
-
-                div
-                  | Author:
-                  = link_to issue.author[:login], issue.author[:html_url]
-
-                div
-                  | Repository:
+                .issue__repository
                   = link_to_repository(issue.repository)
 
-                br
+              .col-4.right
+                .issue__author
+                  a href="#{issue.author[:html_url]}"
+                    img class="issue__author-image" src="#{issue.author[:avatar_url]}"
+                    = issue.author[:login]
 
-        .issues
-          h5 Closed
-          ul
-            - Array(issues[:closed]).each do |issue|
-              li
-                = link_to issue.title, issue.html_url
-                div
-                  | Labels:
-                  - issue.labels.each do |label|
-                    span '#{label['name']}'
+                .issue__labels
+                  .labels
+                    - issue.labels.each do |label|
+                      span.label style="background: ##{label['color']}" = label['name']
 
-                div
-                  | Author:
-                  = link_to issue.author[:login], issue.author[:html_url]
+        /.issues__list
+          - Array(issues[:closed]).each do |issue|
+            .issue.row
+              .col-8
+                .issue__title
+                  = link_to issue.title, issue.html_url
 
-                div
-                  | Repository:
+                .issue__labels
+                  .labels
+                    - issue.labels.each do |label|
+                      span.label style="background: ##{label['color']}" = label['name']
+
+              .col-4.right
+                .issue__repository
                   = link_to_repository(issue.repository)
 
-                br
+                .issue__author
+                  a href="#{issue.author[:html_url]}"
+                    img class="issue__author-image" src="#{issue.author[:avatar_url]}"
+                    = issue.author[:login]

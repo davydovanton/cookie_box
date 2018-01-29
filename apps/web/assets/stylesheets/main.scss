@@ -3,6 +3,7 @@
 @import "header";
 @import "decks";
 @import "repositories";
+@import "issues";
 
 // Colors
 
@@ -24,15 +25,12 @@ a {
   &:hover { text-decoration: underline; }
 }
 
-.issue {
-  padding: 0 10%;
+.main {
+  background-color: rgba(242, 222, 197, 0.45);
 }
 
-.issues_container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
+.right {
+  text-align: right;
 }
 
 .hide {
