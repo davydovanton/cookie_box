@@ -1,14 +1,21 @@
 module Web::Controllers::Decks
   class Index
+    include Dry::Monads::Result::Mixin
     include Web::Action
+
     include Import[operation: 'decks.operations.list']
 
     before :authenticate!
     expose :decks
 
     def call(params)
-      operation.call(current_account.id)
-        .fmap { |value| @decks = value }
+      handle_response operation.call(current_account.id)
+    end
+
+    def handle_response(result)
+      case result
+      when Success then @decks = result.value
+      end
     end
   end
 end
