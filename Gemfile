@@ -19,6 +19,7 @@ gem 'dry-system', '~> 0.9.0'
 gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
 gem 'hanami-interactor-matcher', github: 'davydovanton/hanami-interactor-matcher'
 gem 'dry-transaction'
+gem 'dry-monads', github: 'dry-rb/dry-monads'
 
 # auth
 gem 'omniauth'

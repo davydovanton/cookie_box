@@ -1,6 +1,8 @@
 module Decks
   module Operations
     class Create < Core::Operation
+      include Dry::Monads::Do.for(:call)
+
       include Import['repositories.deck']
 
       VALIDATOR = Dry::Validation.Form do
@@ -9,7 +11,17 @@ module Decks
       end
 
       def call(payload)
-        VALIDATOR.call(payload).to_either.fmap { |p| deck.create(p) }
+        data = yield validate(payload)
+        result = yield persist(data)
+        Success(result)
+      end
+
+      def validate(payload)
+        VALIDATOR.call(payload).to_either
+      end
+
+      def persist(payload)
+        Success(deck.create(payload))
       end
     end
   end
