@@ -3,6 +3,8 @@ require 'dry/transaction'
 module Repositories
   module Operations
     class Delete < Core::Operation
+      include Dry::Monads::Do.for(:call)
+
       include Import['repositories.deck_repo']
 
       VALIDATOR = Dry::Validation.Form do
@@ -11,8 +13,7 @@ module Repositories
       end
 
       def call(payload)
-        result = VALIDATOR.call(payload).to_either
-        return result if result.left?
+        payload = yield VALIDATOR.call(payload).to_either
 
         Right(deck_repo.delete_from_deck(payload[:deck_id], payload[:repository_id]))
       end

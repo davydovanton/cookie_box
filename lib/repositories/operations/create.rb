@@ -13,8 +13,8 @@ module Repositories
       end
 
       def call(payload)
-        data = yield VALIDATOR.call(payload).to_either
-        repo = yield get_or_create_repo.call(data[:repo_name])
+        payload = yield VALIDATOR.call(payload).to_either
+        repo = yield get_or_create_repo.call(payload[:repo_name])
 
         Right(persist(repo, payload))
       end
