@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './config/environment'
 
 require 'web_bouncer'
@@ -9,6 +11,6 @@ use Rack::Session::Cookie, secret: ENV['WEB_SESSIONS_SECRET']
 use OmniAuth::Builder do
   provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], scope: 'write:repo_hook', provider_ignores_state: true
 end
-use WebBouncer['middleware.oauth'], { model: :account, login_redirect: '/decks' }
+use WebBouncer['middleware.oauth'], model: :account, login_redirect: '/decks'
 
 run Hanami.app

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Decks::Operations::AllIssue do
   let(:issues_repo) { double(:issues_repo, all_for_deck: issues) }
   let(:issues) { [Issue.new(state: 'open')] }

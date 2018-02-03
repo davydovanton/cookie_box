@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Web::Controllers::Decks::Show, type: :action do
   include Dry::Monads::Either::Mixin
 

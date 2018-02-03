@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Decks::Operations::Show do
   let(:operation) { described_class.new(deck: deck_repo) }
   let(:id) { 1 }

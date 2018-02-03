@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe DeckRepoRepository, type: :repository do
   let(:repo) { described_class.new }
 
@@ -19,14 +21,14 @@ RSpec.describe DeckRepoRepository, type: :repository do
 
     context 'when dec repo with dec and repo exist' do
       it { expect(subject).to be_a DeckRepo }
-      it { expect{ subject }.to change { repo.all.count }.by(1) }
+      it { expect { subject }.to change { repo.all.count }.by(1) }
     end
 
     context 'when dec repo with dec and repo does not exist' do
       before { repo.create(deck_id: deck_id, repository_id: repository_id) }
 
       it { expect(subject).to be_a DeckRepo }
-      it { expect{ subject }.to change { repo.all.count }.by(0) }
+      it { expect { subject }.to change { repo.all.count }.by(0) }
     end
   end
 end

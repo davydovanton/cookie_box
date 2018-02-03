@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 module Auth
   module Oauth
     class GithubCallback < WebBouncer::OauthCallback
       def call(oauth_response)
         account = account_repo.find_by_uid(oauth_response['uid'])
-        account = account_repo.create(oauth_data(oauth_response)) unless account
+        account ||= account_repo.create(oauth_data(oauth_response))
         Right(account)
       end
 
-    private
+      private
 
       def account_repo
         @account_repo ||= AccountRepository.new

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Container.finalize('persistance.redis') do |container|
   uri = URI.parse(ENV.fetch('REDISTOGO_URL', ''))
   redis = ConnectionPool.new(size: 10, timeout: 3) do

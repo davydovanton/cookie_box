@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Issues
   module Operations
     class Export < Core::Operation
@@ -15,7 +17,7 @@ module Issues
         Right(persist_issues(issues, repository_id))
       end
 
-    private
+      private
 
       def find(id)
         entity = repository.find(id)

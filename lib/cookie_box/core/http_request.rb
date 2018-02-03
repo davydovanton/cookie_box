@@ -1,4 +1,6 @@
-require "net/https"
+# frozen_string_literal: true
+
+require 'net/https'
 
 module Core
   class HttpRequest
@@ -19,7 +21,7 @@ module Core
       http(uri).request(request)
     end
 
-  private
+    private
 
     def http(uri)
       http = Net::HTTP.new(uri.host, uri.port)

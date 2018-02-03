@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Repositories::Libs::GetOrCreateRepo do
   include Dry::Monads::Either::Mixin
 
@@ -24,7 +26,7 @@ RSpec.describe Repositories::Libs::GetOrCreateRepo do
       it { expect(subject).to be_right }
       it { expect(subject.value).to eq Repository.new(title: 'created') }
 
-      it { expect{ subject }.to change(Issues::Workers::Export.jobs, :size).by(1) }
+      it { expect { subject }.to change(Issues::Workers::Export.jobs, :size).by(1) }
     end
 
     context 'and does not exist in github' do

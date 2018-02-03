@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Decks::Operations::Archive do
   let(:deck_repo) { double(:deck_repo, archive: true, find: deck) }
   let(:operation) { described_class.new(deck: deck_repo) }

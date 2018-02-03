@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Decks::Abilities::Base do
   let(:abilities) { Decks::Abilities::Base.new }
   let(:deck) { Deck.new }
@@ -15,7 +17,6 @@ RSpec.describe Decks::Abilities::Base do
     end
 
     context 'when deck publish is nil' do
-
       context 'and account is owner of deck' do
         let(:deck) { Deck.new(publish: false, account_id: 1) }
         let(:account) { Account.new(id: 1) }

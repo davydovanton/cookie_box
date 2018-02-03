@@ -1,4 +1,6 @@
 
+# frozen_string_literal: true
+
 module Mock
   class SuccessListOperation < Core::Operation
     def call(*)

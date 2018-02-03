@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dry/monads/either'
 
 module Repositories
@@ -6,7 +8,7 @@ module Repositories
       include Dry::Monads::Either::Mixin
       include Import['core.http_request']
 
-      GITHUB_REPO_API_URL = 'https://api.github.com/repos/'.freeze
+      GITHUB_REPO_API_URL = 'https://api.github.com/repos/'
 
       def call(repo_name)
         response = http_request.get(GITHUB_REPO_API_URL + repo_name)

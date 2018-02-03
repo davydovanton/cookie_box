@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Decks
   module Operations
     class List < Core::Operation

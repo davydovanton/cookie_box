@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Web::Views::Home::Index, type: :view do
   let(:account) { Account.new }
   let(:exposures) { { current_account: account } }

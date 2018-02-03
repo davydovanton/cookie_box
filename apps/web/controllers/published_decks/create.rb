@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Web::Controllers::PublishedDecks
   class Create
     include Web::Action

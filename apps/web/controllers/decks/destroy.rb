@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Web::Controllers::Decks
   class Destroy
     include Web::Action
@@ -10,7 +12,7 @@ module Web::Controllers::Decks
       redirect_to routes.decks_path
     end
 
-  private
+    private
 
     def verify_csrf_token?
       false

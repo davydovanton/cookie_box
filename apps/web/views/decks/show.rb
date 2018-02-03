@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Web::Views::Decks
   class Show
     include Web::View
@@ -7,11 +9,11 @@ module Web::Views::Decks
     end
 
     def delete_repository_button(repository_id)
-      html.form(action: "/repositories/#{repository_id}", method: "POST") do
-        input type: "hidden", name: "_method", value: "DELETE"
-        input type: "hidden", name: "deck_id", value: deck.id
+      html.form(action: "/repositories/#{repository_id}", method: 'POST') do
+        input type: 'hidden', name: '_method', value: 'DELETE'
+        input type: 'hidden', name: 'deck_id', value: deck.id
 
-        input type: "submit", value: "✕"
+        input type: 'submit', value: '✕'
       end
     end
 
@@ -25,7 +27,7 @@ module Web::Views::Decks
     end
 
     def deck_form
-      Form.new(:repository, routes.repositories_path, { method: :post })
+      Form.new(:repository, routes.repositories_path, method: :post)
     end
   end
 end

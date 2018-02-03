@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Repositories
   module Libs
     class GetOrCreateRepo
@@ -16,7 +18,7 @@ module Repositories
         end
       end
 
-    private
+      private
 
       def create_repository(payload)
         entity = repository.create(payload)

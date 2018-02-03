@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Issues::Operations::Export do
   include Dry::Monads::Either::Mixin
 

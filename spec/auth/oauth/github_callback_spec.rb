@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Auth::Oauth::GithubCallback do
   include Dry::Monads::Either::Mixin
 

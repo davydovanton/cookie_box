@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Web::Views::Decks::Show, type: :view do
   let(:exposures) { { issues: { open: [], closed: [] }, params: {}, deck: deck, current_account: current_account } }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/decks/show.html.slim') }

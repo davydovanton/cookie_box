@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator(:issue) do
   title      { Faker::Book.title }
   html_url   'https://github.com/hanami/events/issues/59'

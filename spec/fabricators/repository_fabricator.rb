@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Fabricator(:repository) do
   full_name   'hanami/hanami'
   description 'Description here'

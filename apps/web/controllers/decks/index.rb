@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Web::Controllers::Decks
   class Index
     include Dry::Monads::Result::Mixin
@@ -8,7 +10,7 @@ module Web::Controllers::Decks
     before :authenticate!
     expose :decks
 
-    def call(params)
+    def call(_params)
       handle_response operation.call(current_account.id)
     end
 

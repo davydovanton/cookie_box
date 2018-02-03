@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dry/monads/either'
 require 'dry/matcher/either_matcher'
 

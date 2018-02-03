@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RepositoryRepository < Hanami::Repository
   associations do
     has_many :decks, through: :deck_repos

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DeckRepoRepository < Hanami::Repository
   associations do
     belongs_to :deck

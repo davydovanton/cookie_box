@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Decks::Operations::Create do
   let(:deck_repo) { double(:deck_repo, create: Deck.new) }
   let(:operation) { described_class.new(deck: deck_repo) }

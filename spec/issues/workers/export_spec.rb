@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 RSpec.describe Issues::Workers::Export do
   include Dry::Monads::Either::Mixin
 
-  let(:operation) { -> (arg) { Right(arg) } }
+  let(:operation) { ->(arg) { Right(arg) } }
   let(:logger) { double(:logger, info: nil) }
   let(:worker) { described_class.new(logger: logger, operation: operation) }
 
@@ -13,7 +15,7 @@ RSpec.describe Issues::Workers::Export do
   end
 
   context 'when operation returns success result' do
-    let(:operation) { -> (arg) { Right(arg) } }
+    let(:operation) { ->(arg) { Right(arg) } }
 
     it 'does not log something' do
       expect(logger).to_not receive(:info)
@@ -22,7 +24,7 @@ RSpec.describe Issues::Workers::Export do
   end
 
   context 'when operation returns failed result' do
-    let(:operation) { -> (arg) { Left(arg) } }
+    let(:operation) { ->(arg) { Left(arg) } }
 
     it 'does not log something' do
       expect(logger).to receive(:info)

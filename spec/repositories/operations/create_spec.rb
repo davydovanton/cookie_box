@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Repositories::Operations::Create do
   include Dry::Monads::Either::Mixin
 

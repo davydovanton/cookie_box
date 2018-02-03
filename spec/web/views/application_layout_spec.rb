@@ -1,4 +1,6 @@
-require "spec_helper"
+# frozen_string_literal: true
+
+require 'spec_helper'
 
 RSpec.describe Web::Views::ApplicationLayout, type: :view do
   let(:layout)   { Web::Views::ApplicationLayout.new(template, {}) }

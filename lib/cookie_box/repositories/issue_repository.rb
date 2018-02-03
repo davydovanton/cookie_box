@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class IssueRepository < Hanami::Repository
   relations :decks, :deck_repos, :repositories
 

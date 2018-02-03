@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Web::Views::Decks::Index, type: :view do
   let(:exposures) { { params: params } }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/decks/index.html.slim') }

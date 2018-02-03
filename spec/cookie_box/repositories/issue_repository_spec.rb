@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe IssueRepository, type: :repository do
   let(:repo) { IssueRepository.new }
 
