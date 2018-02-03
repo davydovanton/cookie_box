@@ -3,6 +3,8 @@ require 'dry/transaction'
 module Repositories
   module Operations
     class Create < Core::Operation
+      include Dry::Monads::Do.for(:call)
+
       include Import['repositories.deck_repo', 'repositories.libs.get_or_create_repo']
 
       VALIDATOR = Dry::Validation.Form do
@@ -11,12 +13,14 @@ module Repositories
       end
 
       def call(payload)
-        result = VALIDATOR.call(payload).to_either
-        return result if result.left?
+        data = yield VALIDATOR.call(payload).to_either
+        repo = yield get_or_create_repo.call(data[:repo_name])
 
-        get_or_create_repo.call(payload[:repo_name]).fmap do |repo|
-          deck_repo.select_or_create(deck_id: payload[:deck_id], repository_id: repo.id)
-        end
+        Right(persist(repo, payload))
+      end
+
+      def persist(repo, payload)
+        deck_repo.select_or_create(deck_id: payload[:deck_id], repository_id: repo.id)
       end
     end
   end
