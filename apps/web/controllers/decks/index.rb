@@ -16,7 +16,7 @@ module Web::Controllers::Decks
 
     def handle_response(result)
       case result
-      when Success then @decks = result.value
+      when Success then @decks = result.value!
       end
     end
   end

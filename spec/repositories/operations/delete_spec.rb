@@ -25,7 +25,7 @@ RSpec.describe Repositories::Operations::Delete do
     let(:repository_id) { nil }
 
     it { expect(subject).to be_left }
-    it { expect(subject.value).to eq(deck_id: ['must be filled'], repository_id: ['must be filled']) }
+    it { expect(subject.failure).to eq(deck_id: ['must be filled'], repository_id: ['must be filled']) }
 
     it 'does not delete anything' do
       expect(deck_repo_mock).to receive(:delete_from_deck).exactly(0).times

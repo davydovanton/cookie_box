@@ -11,8 +11,8 @@ RSpec.describe Auth::Oauth::GithubCallback do
   subject { callback.call(params) }
 
   it { expect(subject).to be_right }
-  it { expect(subject.value).to be_a Account }
-  it { expect(subject.value.uid).to eq uid }
+  it { expect(subject.value!).to be_a Account }
+  it { expect(subject.value!.uid).to eq uid }
 
   context 'when account with uid exist' do
     before { Fabricate.create(:account, uid: uid) }

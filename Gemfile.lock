@@ -31,16 +31,6 @@ GIT
       roda
 
 GIT
-  remote: git://github.com/dry-rb/dry-monads.git
-  revision: 91667c3f4ae9072b10fb35c9124e96cb3f2245e2
-  ref: 91667c3f4ae9072b10fb35c9124e96cb3f2245e2
-  specs:
-    dry-monads (0.4.0)
-      concurrent-ruby (~> 1.0)
-      dry-core (~> 0.3, >= 0.3.3)
-      dry-equalizer
-
-GIT
   remote: git://github.com/intridea/omniauth-github.git
   revision: 2e77639f32c35598e398c0c591ffab37691cdee7
   specs:
@@ -95,6 +85,10 @@ GEM
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
     dry-matcher (0.6.0)
+    dry-monads (1.0.0.beta1)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.4, >= 0.4.4)
+      dry-equalizer
     dry-struct (0.3.1)
       dry-configurable (~> 0.1)
       dry-core (~> 0.3)
@@ -319,7 +313,7 @@ DEPENDENCIES
   connection_pool
   database_cleaner
   dotenv (~> 2.0)
-  dry-monads!
+  dry-monads (~> 1.0.0.beta1)
   dry-system (~> 0.9.0)
   dry-system-hanami!
   faker

@@ -14,7 +14,7 @@ RSpec.describe Repositories::Libs::GithubInfoGetter do
 
     it 'returns right information about repo' do
       VCR.use_cassette('hanami_hanami_get_success') do
-        expect(subject.value).to eq(
+        expect(subject.value!).to eq(
           full_name: 'hanami/hanami',
           description: 'The web, with simplicity.',
           html_url: 'https://github.com/hanami/hanami',

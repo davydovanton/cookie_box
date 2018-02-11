@@ -78,7 +78,7 @@ RSpec.describe Repositories::Operations::Create do
     let(:repo_name) { nil }
 
     it { expect(subject).to be_left }
-    it { expect(subject.value).to eq(deck_id: ['must be filled'], repo_name: ['must be filled']) }
+    it { expect(subject.failure).to eq(deck_id: ['must be filled'], repo_name: ['must be filled']) }
   end
 
   context 'when repository name contain invalid string' do
