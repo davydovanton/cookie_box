@@ -20,7 +20,6 @@ gem 'sidekiq'
 gem 'dry-monads', github: 'dry-rb/dry-monads'
 gem 'dry-system', '~> 0.9.0'
 gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
-gem 'dry-transaction'
 gem 'hanami-interactor-matcher', github: 'davydovanton/hanami-interactor-matcher'
 
 # auth

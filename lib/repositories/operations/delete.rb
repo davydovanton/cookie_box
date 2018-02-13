@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'dry/transaction'
-
 module Repositories
   module Operations
     class Delete < Core::Operation
