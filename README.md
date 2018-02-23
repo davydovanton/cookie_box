@@ -7,3 +7,9 @@ See and manage all issues for specific repos in one place.
 ## Contributing
 
 Check [CONTRIBUTING.md](https://github.com/davydovanton/cookie_box/blob/master/CONTRIBUTING.md) file for more details.
+
+## Copyright
+
+Released under MIT License.
+
+Copyright © 2017-2018 Anton Davydov.
