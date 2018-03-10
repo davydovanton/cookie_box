@@ -35,6 +35,15 @@ RSpec.describe Repositories::Operations::Create do
         subject
       end
     end
+
+    context 'and repository name contain site' do
+      let(:repo_name) { 'github.com/hanami/hanami' }
+
+      it 'creates a new repo <-> deck association' do
+        expect(get_or_create_repo_mock).to receive(:call).with('github.com/hanami/hanami')
+        subject
+      end
+    end
   end
 
   context 'when params invalid' do
@@ -43,5 +52,13 @@ RSpec.describe Repositories::Operations::Create do
 
     it { expect(subject).to be_left }
     it { expect(subject.value).to eq(deck_id: ['must be filled'], repo_name: ['must be filled']) }
+  end
+
+  context 'when repository name contain invalid string' do
+    let(:deck_id) { 1 }
+    let(:repo_name) { 'invalid.com/bad/hanami/hanami' }
+
+    it { expect(subject).to be_left }
+    it { expect(subject.value).to eq(repo_name: ['is in invalid format']) }
   end
 end
