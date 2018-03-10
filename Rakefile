@@ -3,6 +3,8 @@
 require 'rake'
 require 'hanami/rake_tasks'
 
+Rake::Task['assets:precompile'].clear
+
 begin
   require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new(:spec)
