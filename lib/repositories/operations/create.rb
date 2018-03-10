@@ -7,9 +7,11 @@ module Repositories
 
       include Import['repositories.deck_repo', 'repositories.libs.get_or_create_repo']
 
+      GITHUB_LINK = %r[\A(https://)?(www.)?(github.com/)?\w+/\w+\z]
+
       VALIDATOR = Dry::Validation.Form do
         required(:deck_id).filled(:int?)
-        required(:repo_name).filled(:str?)
+        required(:repo_name).filled(:str?, format?: GITHUB_LINK)
       end
 
       def call(payload)
