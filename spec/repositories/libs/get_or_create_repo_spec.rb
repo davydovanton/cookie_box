@@ -10,6 +10,15 @@ RSpec.describe Repositories::Libs::GetOrCreateRepo do
   subject { lib.call(repo_name) }
   let(:repo_name) { 'hanami/hanami' }
 
+  context 'when repo name is github link' do
+    let(:repo_name) { 'github.com/hanami/hanami' }
+
+    it 'truncates repository name' do
+      expect(repository_mock).to receive(:find_by_name).with('hanami/hanami')
+      subject
+    end
+  end
+
   context 'when repo exist in db' do
     let(:repository_mock) { double(:repository, find_by_name: Repository.new(title: 'from DB')) }
 

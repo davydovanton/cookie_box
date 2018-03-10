@@ -8,7 +8,10 @@ module Repositories
         'repositories.repository', 'repositories.libs.github_info_getter', 'issues.workers.export'
       ]
 
+      DELIMETER = '/'
+
       def call(repo_name)
+        repo_name = truncate(repo_name)
         repo = repository.find_by_name(repo_name)
 
         if repo
@@ -19,6 +22,10 @@ module Repositories
       end
 
       private
+
+      def truncate(repo_name)
+        repo_name.split(DELIMETER).last(2).join(DELIMETER)
+      end
 
       def create_repository(payload)
         entity = repository.create(payload)
