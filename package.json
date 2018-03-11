@@ -33,6 +33,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "postinstall": "npm run build"
   }
 }
