@@ -285,6 +285,10 @@ module Web
     configure :development do
       # Don't handle exceptions, render the stack trace
       handle_exceptions false
+
+      assets do
+        manifest 'webpack_manifest.json'
+      end
     end
 
     ##
@@ -313,6 +317,8 @@ module Web
         #
         # See: http://hanamirb.org/guides/assets/overview
         fingerprint true
+
+        manifest 'webpack_manifest.json'
 
         # Content Delivery Network (CDN)
         #
