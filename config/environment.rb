@@ -43,6 +43,10 @@ Hanami.configure do
   end
 
   environment :production do
+    assets do
+      manifest "webpack_manifest.json"
+    end
+
     logger level: :info, formatter: :json, filter: []
 
     mailer do
