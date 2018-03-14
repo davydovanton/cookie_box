@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe Decks::Operations::Create do
-  let(:operation) { described_class.new }
+  let(:operation) { described_class.new(slug_generator: slug_generator) }
+  let(:slug_generator) { -> { '1234567' } }
   let(:repo) { DeckRepository.new }
 
   after { repo.clear }
@@ -16,8 +17,7 @@ RSpec.describe Decks::Operations::Create do
     it { expect { subject }.to change { repo.all.count }.by(1) }
 
     it { expect(subject.value).to be_a Deck }
-    it { expect(subject.value.slug).to be_a String }
-    it { expect(subject.value.slug.size).to eq 7 }
+    it { expect(subject.value.slug).to eq '1234567' }
   end
 
   context 'when payload is invalid' do

@@ -14,6 +14,7 @@ class Container < Dry::System::Container
   register_folder! 'cookie_box/repositories'
 
   #  Decks
+  register_folder! 'decks/libs'
   register_folder! 'decks/operations'
 
   #  Repositories

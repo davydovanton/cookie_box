@@ -5,7 +5,7 @@ module Decks
     class Create < Core::Operation
       include Dry::Monads::Do.for(:call)
 
-      include Import['repositories.deck']
+      include Import['repositories.deck', 'decks.libs.slug_generator']
 
       VALIDATOR = Dry::Validation.Form do
         required(:title).filled(:str?)
@@ -24,8 +24,7 @@ module Decks
       end
 
       def generate_slug(payload)
-        slug = SecureRandom.hex[0..6]
-        Success(slug: slug, **payload)
+        Success(slug: slug_generator.call, **payload)
       end
 
       def persist(payload)
