@@ -20,4 +20,8 @@ class DeckRepository < Hanami::Repository
   def find_with_repos(id)
     aggregate(:repositories).map_to(Deck).by_pk(id).one
   end
+
+  def find_by_slug_with_repos(slug)
+    aggregate(:repositories).map_to(Deck).where(slug: slug).one
+  end
 end
