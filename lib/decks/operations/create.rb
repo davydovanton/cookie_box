@@ -13,13 +13,19 @@ module Decks
       end
 
       def call(payload)
-        data = yield validate(payload)
-        result = yield persist(data)
+        payload = yield validate(payload)
+        payload = yield generate_slug(payload)
+        result = yield persist(payload)
         Success(result)
       end
 
       def validate(payload)
         VALIDATOR.call(payload).to_either
+      end
+
+      def generate_slug(payload)
+        slug = SecureRandom.hex[0..6]
+        Success(slug: slug, **payload)
       end
 
       def persist(payload)
