@@ -44,6 +44,33 @@ RSpec.describe Repositories::Operations::Create do
         subject
       end
     end
+
+    context 'and repository name contain site with http schema' do
+      let(:repo_name) { 'http://github.com/hanami/hanami' }
+
+      it 'creates a new repo <-> deck association' do
+        expect(get_or_create_repo_mock).to receive(:call).with('http://github.com/hanami/hanami')
+        subject
+      end
+    end
+
+    context 'and repository name contain site with https schema' do
+      let(:repo_name) { 'https://github.com/hanami/hanami' }
+
+      it 'creates a new repo <-> deck association' do
+        expect(get_or_create_repo_mock).to receive(:call).with('https://github.com/hanami/hanami')
+        subject
+      end
+    end
+
+    context 'and repository name contain site with https schema and www' do
+      let(:repo_name) { 'https://www.github.com/hanami/hanami' }
+
+      it 'creates a new repo <-> deck association' do
+        expect(get_or_create_repo_mock).to receive(:call).with('https://www.github.com/hanami/hanami')
+        subject
+      end
+    end
   end
 
   context 'when params invalid' do
