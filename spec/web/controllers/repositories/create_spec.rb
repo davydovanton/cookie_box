@@ -5,7 +5,7 @@ RSpec.describe Web::Controllers::Repositories::Create, type: :action do
 
   let(:mock_operation) { Mock::SuccessListOperation.new }
   let(:action) { described_class.new(operation: mock_operation) }
-  let(:params) { { 'rack.session' => session, repository: { deck_id: 1, name: 'hanami/hanami' } } }
+  let(:params) { { 'rack.session' => session, repository: { deck_id: 1, deck_slug: '123', name: 'hanami/hanami' } } }
 
   context 'when account login' do
     let(:session) { { account: Account.new(id: 1) } }
@@ -13,7 +13,7 @@ RSpec.describe Web::Controllers::Repositories::Create, type: :action do
     context 'when operation returns success result' do
       let(:mock_operation) { Mock::SuccessListOperation.new }
 
-      it { expect(action.call(params)).to redirect_to('/decks/1') }
+      it { expect(action.call(params)).to redirect_to('/decks/123') }
 
       it 'calls operation with current account id' do
         expect(mock_operation).to receive(:call).with(deck_id: 1, repo_name: 'hanami/hanami')
@@ -24,7 +24,7 @@ RSpec.describe Web::Controllers::Repositories::Create, type: :action do
     context 'when operation returns fail result' do
       let(:mock_operation) { Mock::FailListOperation.new }
 
-      it { expect(action.call(params)).to redirect_to('/decks/1') }
+      it { expect(action.call(params)).to redirect_to('/decks/123') }
 
       it 'calls operation with current account id' do
         expect(mock_operation).to receive(:call).with(deck_id: 1, repo_name: 'hanami/hanami')

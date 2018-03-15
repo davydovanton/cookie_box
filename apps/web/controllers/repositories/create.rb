@@ -9,7 +9,7 @@ module Web::Controllers::Repositories
 
     def call(params)
       operation.call(deck_id: params[:repository][:deck_id], repo_name: params[:repository][:name])
-      redirect_to routes.deck_path(params[:repository][:deck_id])
+      redirect_to routes.deck_path(params[:repository][:deck_slug])
     end
   end
 end
