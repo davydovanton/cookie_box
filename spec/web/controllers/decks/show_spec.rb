@@ -4,20 +4,27 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
   include Dry::Monads::Either::Mixin
 
   let(:mock_operation) { Mock::SuccessListOperation.new }
-  let(:action) { described_class.new(operation: mock_operation) }
+  let(:get_issues) { Mock::SuccessListOperation.new }
+  let(:action) { described_class.new(operation: mock_operation, get_issues: get_issues) }
   let(:params)  { { 'rack.session' => session, id: 1 } }
 
   context 'when account login' do
     let(:session) { { account: Account.new(id: 1) } }
 
     context 'and operation returns success result' do
+      let(:deck) { Deck.new(id: 1, account_id: 1) }
+
       before { allow(mock_operation).to receive(:call).and_return(Right(deck)) }
-      let(:deck) { Deck.new(account_id: 1) }
 
       it { expect(action.call(params)).to be_success }
 
       it 'calls operation with current account id' do
         expect(mock_operation).to receive(:call).with(1).and_return(Right(deck))
+        action.call(params)
+      end
+
+      it 'calls get_issues with deck id' do
+        expect(get_issues).to receive(:call).with(deck_id: 1).and_return(Right([]))
         action.call(params)
       end
 
@@ -29,7 +36,7 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
 
     context 'and operation returns not account deck' do
       before { allow(mock_operation).to receive(:call).and_return(Right(deck)) }
-      let(:deck) { Deck.new(account_id: 2) }
+      let(:deck) { Deck.new(id: 1, account_id: 2) }
 
       it { expect(action.call(params)).to have_http_status(404) }
       it { expect(action.call(params)).to match_in_body('Not found') }
@@ -41,7 +48,7 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
 
     context 'and operation returns public not account deck' do
       before { allow(mock_operation).to receive(:call).and_return(Right(deck)) }
-      let(:deck) { Deck.new(account_id: 2, published: true) }
+      let(:deck) { Deck.new(id: 1, account_id: 2, published: true) }
 
       it { expect(action.call(params)).to be_success }
 
@@ -56,12 +63,17 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
 
       it { expect(action.call(params)).to have_http_status(404) }
       it { expect(action.call(params)).to match_in_body('Not found') }
+
+      it 'does not call get_issues with deck id' do
+        expect(get_issues).to_not receive(:call)
+        action.call(params)
+      end
     end
   end
 
   context 'when account not login' do
     before { allow(mock_operation).to receive(:call).and_return(Right(deck)) }
-    let(:deck) { Deck.new(account_id: 1) }
+    let(:deck) { Deck.new(id: 1, account_id: 1) }
 
     let(:session) { {} }
 
@@ -71,7 +83,7 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
 
   context 'when account not login but deck is public' do
     before { allow(mock_operation).to receive(:call).and_return(Right(deck)) }
-    let(:deck) { Deck.new(account_id: 1, published: true) }
+    let(:deck) { Deck.new(id: 1, account_id: 1, published: true) }
 
     let(:session) { {} }
 

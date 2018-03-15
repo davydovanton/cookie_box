@@ -13,7 +13,7 @@
             .row
               .col-9
                 .deck__title
-                  = link_to deck.title, routes.deck_path(deck.id)
+                  = link_to deck.title, routes.deck_path(deck.slug)
 
               .col-3
                 .deck__status = publish_status(deck)

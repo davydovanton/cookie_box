@@ -5,8 +5,8 @@ module Decks
     class Show < Core::Operation
       include Import['repositories.deck']
 
-      def call(id)
-        result = deck.find_with_repos(id)
+      def call(slug)
+        result = deck.find_by_slug_with_repos(slug)
         result ? Right(result) : Left(:not_found)
       end
     end

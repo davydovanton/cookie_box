@@ -8,7 +8,7 @@ module Web::Controllers::Decks
     before :authenticate!
 
     def call(params)
-      operation.call(deck_id: params[:id], account_id: current_account.id)
+      operation.call(deck_slug: params[:id], account_id: current_account.id)
       redirect_to routes.decks_path
     end
 
