@@ -124,4 +124,25 @@ RSpec.describe DeckRepository, type: :repository do
       it { expect(subject).to eq nil }
     end
   end
+
+  describe '#find_by_slug' do
+    let(:repository_repo) { RepositoryRepository.new }
+    let(:deck_repo_repo) { DeckRepoRepository.new }
+
+    subject { repo.find_by_slug(slug) }
+
+    context 'when deck has repos' do
+      let(:slug) { '1234567' }
+
+      before { Fabricate.create(:deck, slug: '1234567', title: 'title') }
+
+      it { expect(subject).to be_a Deck }
+    end
+
+    context 'when deck does not exist' do
+      let(:slug) { '7654321' }
+
+      it { expect(subject).to eq nil }
+    end
+  end
 end
