@@ -24,9 +24,9 @@ module Web::Views::Decks
     end
 
     def archive_form(deck)
-      html.form(action: "/decks/#{deck.id}", method: 'POST') do
+      html.form(action: "/decks/#{deck.slug}", method: 'POST') do
         input(type: 'hidden', name: '_method', value: 'DELETE')
-        input(type: 'hidden', name: 'id',      value: deck.id)
+        input(type: 'hidden', name: 'id',      value: deck.slug)
         input(type: 'submit', value: '✕')
       end
     end

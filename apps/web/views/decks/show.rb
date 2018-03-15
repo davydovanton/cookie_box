@@ -12,6 +12,7 @@ module Web::Views::Decks
       html.form(action: "/repositories/#{repository_id}", method: 'POST') do
         input type: 'hidden', name: '_method', value: 'DELETE'
         input type: 'hidden', name: 'deck_id', value: deck.id
+        input type: 'hidden', name: 'deck_slug', value: deck.slug
 
         input type: 'submit', value: '✕'
       end
@@ -21,6 +22,7 @@ module Web::Views::Decks
       form_for deck_form, id: 'deck-form' do
         text_field :name
         hidden_field :deck_id, value: deck.id
+        hidden_field :deck_slug, value: deck.slug
 
         submit 'Add github repository to deck'
       end
