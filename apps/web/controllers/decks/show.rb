@@ -8,10 +8,11 @@ module Web::Controllers::Decks
     expose :deck, :issues
 
     def call(params)
-      operation.call(params[:id]).fmap do |deck|
-        @deck = deck
-        get_issues.call(deck_id: @deck.id).fmap { |issues| @issues = issues }
-      end
+      operation
+        .call(params[:id])
+        .fmap { |deck| @deck = deck }
+        .bind { |deck| get_issues.call(deck_id: deck.id) }
+        .fmap { |issues| @issues = issues }
 
       status 404, 'Not found' unless abilities['deck.read'].call(current_account, @deck)
     end
