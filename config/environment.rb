@@ -5,12 +5,17 @@ require 'hanami/setup'
 require 'hanami/model'
 require_relative '../system/import'
 require_relative '../lib/cookie_box'
-require_relative '../apps/webhooks/application'
-require_relative '../apps/web/application'
 
-Hanami.configure do
-  mount Webhooks::Application, at: '/webhooks'
-  mount Web::Application, at: '/'
+Hanami.configure do # rubocop:disable Metrics/BlockLength
+  if Hanami.app?(:webhooks)
+    require_relative '../apps/webhooks/application'
+    mount Webhooks::Application, at: '/webhooks'
+  end
+
+  if Hanami.app?(:web)
+    require_relative '../apps/web/application'
+    mount Web::Application, at: '/'
+  end
 
   model do
     ##
