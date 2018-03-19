@@ -1,4 +1,6 @@
-require "spec_helper"
+# frozen_string_literal: true
+
+require 'spec_helper'
 
 RSpec.describe Webhooks::Views::ApplicationLayout, type: :view do
   let(:layout)   { Webhooks::Views::ApplicationLayout.new(template, {}) }
