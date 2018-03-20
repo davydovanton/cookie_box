@@ -20,6 +20,7 @@ gem 'sidekiq'
 
 # dependencies and DI
 gem 'dry-monads', '~> 1.0.0.beta1'
+gem 'dry-matcher', github: 'dry-rb/dry-matcher'
 gem 'dry-system', '~> 0.9.0'
 gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
 gem 'hanami-interactor-matcher', github: 'davydovanton/hanami-interactor-matcher'
@@ -28,7 +29,7 @@ gem 'hanami-interactor-matcher', github: 'davydovanton/hanami-interactor-matcher
 gem 'kan'
 gem 'omniauth'
 gem 'omniauth-github', github: 'intridea/omniauth-github'
-gem 'web_bouncer', github: 'davydovanton/web_bouncer'
+gem 'web_bouncer', github: 'davydovanton/web_bouncer', branch: 'chore/update-monads'
 
 # frontend
 gem 'slim'

@@ -10,11 +10,8 @@ RSpec.describe Decks::Operations::Show do
     let(:deck_repo) { double(:deck_repo, find_by_slug_with_repos: Deck.new(slug: '1234567')) }
 
     it { expect(subject).to be_right }
-<<<<<<< 14f16aac0ba448eee0f793f10cc7577cb1ab8eba
-    it { expect(subject.value.slug).to eq slug }
-=======
-    it { expect(subject.value!).to eq Deck.new(id: 1) }
->>>>>>> Use latest dry-monads version
+    it { expect(subject.value!.slug).to eq slug }
+    it { expect(subject.value!).to eq Deck.new(slug: '1234567') }
   end
 
   context 'when deck unexist' do

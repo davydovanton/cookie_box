@@ -86,6 +86,6 @@ RSpec.describe Repositories::Operations::Create do
     let(:repo_name) { 'invalid.com/bad/hanami/hanami' }
 
     it { expect(subject).to be_left }
-    it { expect(subject.value).to eq(repo_name: ['is in invalid format']) }
+    it { expect(subject.failure).to eq(repo_name: ['is in invalid format']) }
   end
 end
