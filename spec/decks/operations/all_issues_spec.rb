@@ -8,7 +8,7 @@ RSpec.describe Decks::Operations::AllIssue do
   subject { operation.call(deck_id: 1) }
 
   it { expect(subject).to be_right }
-  it { expect(subject.value).to eq(open: issues) }
+  it { expect(subject.value!).to eq(open: issues) }
 
   it 'calls archive repo method with deck id' do
     expect(issues_repo).to receive(:all_for_deck).with(1)

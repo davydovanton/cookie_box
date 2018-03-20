@@ -22,23 +22,19 @@ GIT
 
 GIT
   remote: git://github.com/davydovanton/web_bouncer.git
-  revision: 52dc8e186dfd8574770656e9d12dd1ab1f245166
+  revision: 9c94966a4beb804a952b80c13f619ba657ea2824
   specs:
     web_bouncer (0.1.0)
       dry-container
       dry-matcher
-      dry-monads
+      dry-monads (= 1.0.0.beta1)
       roda
 
 GIT
-  remote: git://github.com/dry-rb/dry-monads.git
-  revision: 91667c3f4ae9072b10fb35c9124e96cb3f2245e2
-  ref: 91667c3f4ae9072b10fb35c9124e96cb3f2245e2
+  remote: git://github.com/dry-rb/dry-matcher.git
+  revision: 3dcd140c8b3c931aec0b35fbe0f22cecf83818c2
   specs:
-    dry-monads (0.4.0)
-      concurrent-ruby (~> 1.0)
-      dry-core (~> 0.3, >= 0.3.3)
-      dry-equalizer
+    dry-matcher (0.7.0)
 
 GIT
   remote: git://github.com/intridea/omniauth-github.git
@@ -94,7 +90,10 @@ GEM
       dry-container (~> 0.2, >= 0.2.6)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
-    dry-matcher (0.6.0)
+    dry-monads (1.0.0.beta1)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.4, >= 0.4.4)
+      dry-equalizer
     dry-struct (0.3.1)
       dry-configurable (~> 0.1)
       dry-core (~> 0.3)
@@ -231,7 +230,7 @@ GEM
     rainbow (3.0.0)
     rake (12.3.0)
     redis (3.3.5)
-    roda (3.3.0)
+    roda (3.5.0)
       rack
     rom (3.3.3)
       concurrent-ruby (~> 1.0)
@@ -319,7 +318,8 @@ DEPENDENCIES
   connection_pool
   database_cleaner
   dotenv (~> 2.0)
-  dry-monads!
+  dry-matcher!
+  dry-monads (~> 1.0.0.beta1)
   dry-system (~> 0.9.0)
   dry-system-hanami!
   faker
@@ -347,6 +347,9 @@ DEPENDENCIES
   vcr
   web_bouncer!
   webmock
+
+RUBY VERSION
+   ruby 2.5.0p0
 
 BUNDLED WITH
    1.16.1

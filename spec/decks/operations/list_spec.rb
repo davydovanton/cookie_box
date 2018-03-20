@@ -8,5 +8,5 @@ RSpec.describe Decks::Operations::List do
   subject { operation.call(account_id) }
 
   it { expect(subject).to be_right }
-  it { expect(subject.value).to eq [] }
+  it { expect(subject.value!).to eq [] }
 end

@@ -16,8 +16,8 @@ RSpec.describe Decks::Operations::Create do
 
     it { expect { subject }.to change { repo.all.count }.by(1) }
 
-    it { expect(subject.value).to be_a Deck }
-    it { expect(subject.value.slug).to eq '1234567' }
+    it { expect(subject.value!).to be_a Deck }
+    it { expect(subject.value!.slug).to eq '1234567' }
   end
 
   context 'when payload is invalid' do
@@ -25,6 +25,6 @@ RSpec.describe Decks::Operations::Create do
 
     it { expect(subject).to be_left }
     it { expect { subject }.to change { repo.all.count }.by(0) }
-    it { expect(subject.value).to eq(title: ['is missing'], account_id: ['is missing']) }
+    it { expect(subject.failure).to eq(title: ['is missing'], account_id: ['is missing']) }
   end
 end

@@ -23,7 +23,7 @@ RSpec.describe Repositories::Libs::GetOrCreateRepo do
     let(:repository_mock) { double(:repository, find_by_name: Repository.new(title: 'from DB')) }
 
     it { expect(subject).to be_right }
-    it { expect(subject.value).to eq Repository.new(title: 'from DB') }
+    it { expect(subject.value!).to eq Repository.new(title: 'from DB') }
   end
 
   context 'when repo does not exist in db' do
@@ -33,7 +33,7 @@ RSpec.describe Repositories::Libs::GetOrCreateRepo do
       let(:github_info_getter_mock) { double(:github_info_getter, call: Right({})) }
 
       it { expect(subject).to be_right }
-      it { expect(subject.value).to eq Repository.new(title: 'created') }
+      it { expect(subject.value!).to eq Repository.new(title: 'created') }
 
       it { expect { subject }.to change(Issues::Workers::Export.jobs, :size).by(1) }
     end
@@ -42,7 +42,7 @@ RSpec.describe Repositories::Libs::GetOrCreateRepo do
       let(:github_info_getter_mock) { double(:github_info_getter, call: Left(:error)) }
 
       it { expect(subject).to be_left }
-      it { expect(subject.value).to eq :error }
+      it { expect(subject.failure).to eq :error }
     end
   end
 end
