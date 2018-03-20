@@ -22,7 +22,6 @@ module Webhooks
       #
       load_paths << %w[
         controllers
-        views
       ]
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
@@ -92,12 +91,12 @@ module Webhooks
       # Default format for the requests that don't specify an HTTP_ACCEPT header
       # Argument: A symbol representation of a mime type, defaults to :html
       #
-      # default_request_format :html
+      default_request_format :json
 
       # Default format for responses that don't consider the request format
       # Argument: A symbol representation of a mime type, defaults to :html
       #
-      # default_response_format :html
+      default_response_format :json
 
       # HTTP Body parsers
       # Parse non GET responses body for a specific mime type
@@ -105,7 +104,7 @@ module Webhooks
       #             (only `:json` is supported)
       #           Object, the parser
       #
-      # body_parsers :json
+      body_parsers :json
 
       # When it's true and the router receives a non-encrypted request (http),
       # it redirects to the secure equivalent (https). Disabled by default.
@@ -118,49 +117,49 @@ module Webhooks
 
       # The layout to be used by all views
       #
-      layout :application # It will load Webhooks::Views::ApplicationLayout
+      # layout :application # It will load Webhooks::Views::ApplicationLayout
 
       # The relative path to templates
       #
-      templates 'templates'
+      # templates 'templates'
 
       ##
       # ASSETS
       #
-      assets do
-        # JavaScript compressor
-        #
-        # Supported engines:
-        #
-        #   * :builtin
-        #   * :uglifier
-        #   * :yui
-        #   * :closure
-        #
-        # See: http://hanamirb.org/guides/assets/compressors
-        #
-        # In order to skip JavaScript compression comment the following line
-        javascript_compressor :builtin
-
-        # Stylesheet compressor
-        #
-        # Supported engines:
-        #
-        #   * :builtin
-        #   * :yui
-        #   * :sass
-        #
-        # See: http://hanamirb.org/guides/assets/compressors
-        #
-        # In order to skip stylesheet compression comment the following line
-        stylesheet_compressor :builtin
-
-        # Specify sources for assets
-        #
-        sources << [
-          'assets'
-        ]
-      end
+      # assets do
+      #   # JavaScript compressor
+      #   #
+      #   # Supported engines:
+      #   #
+      #   #   * :builtin
+      #   #   * :uglifier
+      #   #   * :yui
+      #   #   * :closure
+      #   #
+      #   # See: http://hanamirb.org/guides/assets/compressors
+      #   #
+      #   # In order to skip JavaScript compression comment the following line
+      #   javascript_compressor :builtin
+      #
+      #   # Stylesheet compressor
+      #   #
+      #   # Supported engines:
+      #   #
+      #   #   * :builtin
+      #   #   * :yui
+      #   #   * :sass
+      #   #
+      #   # See: http://hanamirb.org/guides/assets/compressors
+      #   #
+      #   # In order to skip stylesheet compression comment the following line
+      #   stylesheet_compressor :builtin
+      #
+      #   # Specify sources for assets
+      #   #
+      #   sources << [
+      #     'assets'
+      #   ]
+      # end
 
       ##
       # SECURITY
@@ -269,10 +268,10 @@ module Webhooks
       # This is useful for sharing common functionality
       #
       # See: http://www.rubydoc.info/gems/hanami-view#Configuration
-      view.prepare do
-        include Hanami::Helpers
-        include Webhooks::Assets::Helpers
-      end
+      # view.prepare do
+      #   include Hanami::Helpers
+      #   include Webhooks::Assets::Helpers
+      # end
     end
 
     ##
