@@ -22,8 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/davydovanton/web_bouncer.git
-  revision: 32407e5253ca1ac9afa309c77d8a64def790493f
-  branch: chore/update-monads
+  revision: 9c94966a4beb804a952b80c13f619ba657ea2824
   specs:
     web_bouncer (0.1.0)
       dry-container

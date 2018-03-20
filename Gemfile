@@ -29,7 +29,7 @@ gem 'hanami-interactor-matcher', github: 'davydovanton/hanami-interactor-matcher
 gem 'kan'
 gem 'omniauth'
 gem 'omniauth-github', github: 'intridea/omniauth-github'
-gem 'web_bouncer', github: 'davydovanton/web_bouncer', branch: 'chore/update-monads'
+gem 'web_bouncer', github: 'davydovanton/web_bouncer'
 
 # frontend
 gem 'slim'
