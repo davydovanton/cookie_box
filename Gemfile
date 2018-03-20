@@ -19,8 +19,8 @@ gem 'redis', '~>3.2'
 gem 'sidekiq'
 
 # dependencies and DI
-gem 'dry-monads', '~> 1.0.0.beta1'
 gem 'dry-matcher', github: 'dry-rb/dry-matcher'
+gem 'dry-monads', '~> 1.0.0.beta1'
 gem 'dry-system', '~> 0.9.0'
 gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
 gem 'hanami-interactor-matcher', github: 'davydovanton/hanami-interactor-matcher'
