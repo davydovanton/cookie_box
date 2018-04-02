@@ -2,7 +2,7 @@
 
 module Decks
   module Operations
-    class AllIssue < Core::Operation
+    class AllIssues < Core::Operation
       include Import['repositories.issue']
 
       # THINK: replace this operation to issues domain 'issues.operations.list'

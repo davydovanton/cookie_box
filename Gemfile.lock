@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/davydovanton/dry-system-hanami.git
-  revision: d2b270c00259af040ba275d7dd4d32293a36857b
+  revision: 78f6eeec39794af1a175eaf4305dbeddb252de30
   specs:
     dry-system-hanami (0.1.0)
 

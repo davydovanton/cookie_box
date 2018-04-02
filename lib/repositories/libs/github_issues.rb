@@ -4,7 +4,7 @@ require 'dry/monads/either'
 
 module Repositories
   module Libs
-    class GithubIssue
+    class GithubIssues
       include Dry::Monads::Either::Mixin
       include Import['core.http_request']
 
