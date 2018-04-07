@@ -7,8 +7,11 @@ module Repositories
     class PrersistWebhookStatus
       include Dry::Monads::Either::Mixin
 
-      def call(payload)
-        Right(:ok)
+      include Import['repositories.repository']
+
+      def call(repository_id:)
+        # TODO: log updating
+        Right(repository.update(repository_id, webhook_enable: true))
       end
     end
   end
