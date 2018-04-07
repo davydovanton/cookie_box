@@ -5,7 +5,7 @@ module Repositories
     class GetOrCreateRepo
       include Dry::Monads::Either::Mixin
       include Import[
-        'repositories.repository', 'repositories.libs.github_info_getter', 'issues.workers.export'
+        'repositories.repository', 'repositories.libs.github.info_getter', 'issues.workers.export'
       ]
 
       DELIMETER = '/'
@@ -17,7 +17,7 @@ module Repositories
         if repo
           Right(repo)
         else
-          github_info_getter.call(repo_name).fmap { |value| create_repository(value) }
+          info_getter.call(repo_name).fmap { |value| create_repository(value) }
         end
       end
 
