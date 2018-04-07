@@ -6,7 +6,7 @@ module Repositories
       include Dry::Monads::Do.for(:call)
 
       include Import[
-        'repositories.libs.github_webhook_request',
+        'repositories.libs.github.webhook_request',
         'repositories.libs.prersist_webhook_status'
       ]
 
@@ -16,7 +16,7 @@ module Repositories
 
       def call(payload)
         payload = yield VALIDATOR.call(payload).to_either
-        github_webhook_request.call(payload)
+        webhook_request.call(payload)
         prersist_webhook_status.call(payload)
         # notify
       end
