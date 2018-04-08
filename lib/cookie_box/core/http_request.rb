@@ -12,10 +12,10 @@ module Core
       http(uri).request(request)
     end
 
-    def post(url, **params)
+    def post(url, params)
       uri = URI.parse(url)
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.set_form_data(params)
+      request = Net::HTTP::Post.new(uri.request_uri, 'Content-Type' => 'application/json')
+      request.body = params.to_json
       yield request if block_given?
 
       http(uri).request(request)
