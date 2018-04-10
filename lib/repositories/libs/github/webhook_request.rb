@@ -19,7 +19,7 @@ module Repositories
             url: 'http://cookie-box.cluster.davydovanton.com/webhooks/github',
             content_type: 'json'
           }
-        }
+        }.freeze
 
         def call(token:, repository:)
           response = http_request.post(

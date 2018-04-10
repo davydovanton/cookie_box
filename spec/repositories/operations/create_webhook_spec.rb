@@ -7,8 +7,8 @@ RSpec.describe Repositories::Operations::CreateWebhook do
     described_class.new(webhook_request: webhook_request, prersist_webhook_status: prersist_webhook_status)
   end
 
-  let(:webhook_request) { -> (_) { Right(:ok) } }
-  let(:prersist_webhook_status) { -> (_) { Right(:ok) } }
+  let(:webhook_request) { ->(_) { Right(:ok) } }
+  let(:prersist_webhook_status) { ->(_) { Right(:ok) } }
 
   subject { operation.call(payload) }
 

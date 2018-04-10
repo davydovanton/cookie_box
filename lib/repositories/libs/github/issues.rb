@@ -23,7 +23,7 @@ module Repositories
           Right(data)
         end
 
-      private
+        private
 
         def format_payload(payload) # rubocop:disable Metrics/MethodLength
           {
