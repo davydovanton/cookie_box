@@ -15,6 +15,9 @@ gem 'mock_redis'
 gem 'pg'
 gem 'redis', '~>3.2'
 
+# http
+gem 'faraday'
+
 # background
 gem 'sidekiq'
 

@@ -323,6 +323,7 @@ DEPENDENCIES
   dry-system (~> 0.9.0)
   dry-system-hanami!
   faker
+  faraday
   hanami (~> 1.2)
   hanami-fabrication
   hanami-interactor-matcher!
