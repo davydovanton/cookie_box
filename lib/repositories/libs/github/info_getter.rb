@@ -7,13 +7,11 @@ module Repositories
     module Github
       class InfoGetter
         include Dry::Monads::Either::Mixin
-        include Import['core.http_request']
-
-        GITHUB_REPO_API_URL = 'https://api.github.com/repos/'
+        include Import[:github_client]
 
         def call(repo_name)
-          response = http_request.get(GITHUB_REPO_API_URL + repo_name)
-          return Left(:invalid_repo_name) unless response.is_a?(Net::HTTPSuccess)
+          response = github_client.get("/repos/#{repo_name}")
+          return Left(:invalid_repo_name) unless response.success?
 
           data = JSON.parse(response.body)
 
