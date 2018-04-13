@@ -3,13 +3,13 @@
 RSpec.describe Issues::Operations::Export do
   include Dry::Monads::Either::Mixin
 
+  let(:operation) { described_class.new(repository: repository_repo, issue: issue_repo, github_list: github_list) }
+
   let(:repository_repo) { double(:repository_repo, find: repository_entity) }
   let(:repository_entity) { Repository.new }
 
   let(:issue_repo) { double(:issue_repo, create: nil) }
   let(:github_list) { double(:github_list) }
-
-  let(:operation) { described_class.new(repository: repository_repo, issue: issue_repo, github_list: github_list) }
 
   subject { operation.call(1) }
 

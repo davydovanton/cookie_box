@@ -4,6 +4,7 @@ require 'dry/monads/either'
 
 module Issues
   module Libs
+    # TODO: specs
     class GithubList
       include Dry::Monads::Either::Mixin
       include Import['core.http_request', :logger]
@@ -53,6 +54,7 @@ module Issues
       def format_payload(payload) # rubocop:disable Metrics/MethodLength
         {
           title: payload['title'],
+          vcs_source_id: payload['id'],
           html_url: payload['html_url'],
           state: payload['state'],
           comments: payload['comments'],
