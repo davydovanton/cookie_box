@@ -37,6 +37,13 @@ GIT
     dry-matcher (0.7.0)
 
 GIT
+  remote: git://github.com/hanami/events.git
+  revision: 528add10a6d850d399e4b8f9aed4184f53c3961c
+  specs:
+    hanami-events (0.1.0)
+      dry-container (~> 0.6)
+
+GIT
   remote: git://github.com/intridea/omniauth-github.git
   revision: 2e77639f32c35598e398c0c591ffab37691cdee7
   specs:
@@ -325,6 +332,7 @@ DEPENDENCIES
   faker
   faraday
   hanami (~> 1.2)
+  hanami-events!
   hanami-fabrication
   hanami-interactor-matcher!
   hanami-model (~> 1.2)
