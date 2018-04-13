@@ -13,9 +13,14 @@ RSpec.describe Decks::Operations::Show do
     let(:deck_repo) { double(:deck_repo, find_by_slug_with_repos: Deck.new(slug: '1234567')) }
 
     it { expect(subject).to be_right }
-    it { expect(subject.value![:deck].slug).to eq slug }
-    it { expect(subject.value![:deck]).to eq Deck.new(slug: '1234567') }
-    it { expect(subject.value![:issues]).to eq({}) }
+    it { expect(subject.value!).to eq(deck: Deck.new(slug: '1234567'), issues: {}) }
+
+    context 'and issues returns failure' do
+      let(:domain_caller) { double(:events, call: Failure(:error)) }
+
+      it { expect(subject).to be_right }
+      it { expect(subject.value!).to eq(deck: Deck.new(slug: '1234567'), issues: {}) }
+    end
   end
 
   context 'when deck unexist' do

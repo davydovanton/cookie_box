@@ -7,10 +7,17 @@ module Decks
 
       def call(slug)
         deck = deck_repo.find_by_slug_with_repos(slug)
-        return Left(:not_found) unless deck
+        return Failure(:not_found) unless deck
 
         issues = domain_caller.call('issues.list', deck_id: deck.id)
-        Right(deck: deck, issues: issues.value!)
+
+        case issues
+        when Success
+          Success(deck: deck, issues: issues.value!)
+        when Failure
+          # TODO: logger call
+          Success(deck: deck, issues: {})
+        end
       end
     end
   end
