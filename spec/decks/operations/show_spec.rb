@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe Decks::Operations::Show do
-  let(:operation) { described_class.new(deck: deck_repo) }
+  include Dry::Monads::Either::Mixin
+
+  let(:operation) { described_class.new(deck_repo: deck_repo, events: events) }
+  let(:events) { double(:events, broadcast: [Success({})]) }
   let(:slug) { '1234567' }
 
   subject { operation.call(slug) }
@@ -10,8 +13,9 @@ RSpec.describe Decks::Operations::Show do
     let(:deck_repo) { double(:deck_repo, find_by_slug_with_repos: Deck.new(slug: '1234567')) }
 
     it { expect(subject).to be_right }
-    it { expect(subject.value!.slug).to eq slug }
-    it { expect(subject.value!).to eq Deck.new(slug: '1234567') }
+    it { expect(subject.value![:deck].slug).to eq slug }
+    it { expect(subject.value![:deck]).to eq Deck.new(slug: '1234567') }
+    it { expect(subject.value![:issues]).to eq({}) }
   end
 
   context 'when deck unexist' do
