@@ -3,8 +3,8 @@
 RSpec.describe Decks::Operations::Show do
   include Dry::Monads::Either::Mixin
 
-  let(:operation) { described_class.new(deck_repo: deck_repo, events: events) }
-  let(:events) { double(:events, broadcast: [Success({})]) }
+  let(:operation) { described_class.new(deck_repo: deck_repo, domain_caller: domain_caller) }
+  let(:domain_caller) { double(:events, call: Success({})) }
   let(:slug) { '1234567' }
 
   subject { operation.call(slug) }
