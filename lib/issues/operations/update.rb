@@ -3,8 +3,7 @@
 module Issues
   module Operations
     class Update < Core::Operation
-      def call(payload)
-      end
+      def call(payload); end
     end
   end
 end

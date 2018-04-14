@@ -7,7 +7,7 @@ Container.boot(:domain_transport) do |container|
   end
 
   start do
-    container.register(:domain_caller, -> (event_name, payload) do
+    container.register(:domain_caller, lambda do |event_name, payload|
       container[:domain_transport].broadcast(event_name, payload).first
     end)
   end
