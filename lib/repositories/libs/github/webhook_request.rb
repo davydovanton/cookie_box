@@ -16,7 +16,7 @@ module Repositories
           active: true,
           events: ['issues'],
           config: {
-            url: 'http://cookie-box.cluster.davydovanton.com/webhooks/github',
+            url: Types::GithubWebhookHandlerUrl[ENV['GITHUB_WEBHOOK_HANDLER_URL']],
             content_type: 'json'
           }
         }.freeze

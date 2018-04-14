@@ -2,6 +2,7 @@
 
 require 'dry/system/container'
 require 'dry/system/hanami'
+require_relative '../lib/types'
 
 class Container < Dry::System::Container
   extend Dry::System::Hanami::Resolver
