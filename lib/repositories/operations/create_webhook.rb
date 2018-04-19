@@ -16,7 +16,7 @@ module Repositories
 
       def call(payload)
         payload = yield VALIDATOR.call(payload).to_either
-        webhook_request.call(payload)
+        yield webhook_request.call(payload)
         prersist_webhook_status.call(payload)
         # notify
       end
