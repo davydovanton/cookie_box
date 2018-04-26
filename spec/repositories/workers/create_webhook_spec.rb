@@ -31,4 +31,21 @@ RSpec.describe Repositories::Workers::CreateWebhook do
       subject
     end
   end
+
+  context 'with all dependencies' do
+    let(:repo) { RepositoryRepository.new }
+    let(:operation) { Repositories::Operations::CreateWebhook.new(webhook_request: ->(_) { Right(status: :ok) }) }
+    let(:repository) { Fabricate.create(:repository, webhook_enable: false) }
+
+    subject { worker.perform(repository.id) }
+
+    after { repo.clear }
+
+    let(:new_repository) { repo.find(repository.id) }
+
+    it 'changes repository webhook status' do
+      subject
+      expect(new_repository.webhook_enable).to be true
+    end
+  end
 end
