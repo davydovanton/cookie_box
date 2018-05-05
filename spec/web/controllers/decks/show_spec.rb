@@ -8,7 +8,7 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
   let(:params)  { { 'rack.session' => session, id: 1 } }
 
   context 'when account login' do
-    let(:session) { { account: Account.new(id: 1, roles: 'regular') } }
+    let(:session) { { account: Account.new(id: 1) } }
 
     context 'and operation returns success result' do
       let(:deck) { Deck.new(id: 1, account_id: 1) }
