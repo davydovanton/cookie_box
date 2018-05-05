@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Decks::Abilities::Base do
+RSpec.describe Decks::Abilities::Regular do
   let(:account) { Account.new(roles: 'regular') }
-  let(:abilities) { Decks::Abilities::Base.new }
+  let(:abilities) { described_class.new }
 
   describe 'read ability' do
     let(:deck) { Deck.new }

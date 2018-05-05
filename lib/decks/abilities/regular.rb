@@ -2,7 +2,7 @@
 
 module Decks
   module Abilities
-    class Base
+    class Regular
       include Kan::Abilities
 
       role(:regular) do |account, _|
