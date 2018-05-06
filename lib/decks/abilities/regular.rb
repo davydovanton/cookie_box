@@ -15,7 +15,7 @@ module Decks
         deck&.published || (deck && deck.account_id == account&.id)
       end
 
-      register 'create' do |account, deck_count|
+      register 'create' do |_account, deck_count|
         deck_count >= 0 && deck_count <= ALLOWED_DECK_COUNT
       end
     end

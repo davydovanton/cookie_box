@@ -7,7 +7,7 @@ module Decks
 
       role(:anonymous) { |account, _| account.roles.nil? }
 
-      register('read') { |account, deck| !!deck&.published }
+      register('read') { |_account, deck| !!deck&.published } # rubocop:disable Style/DoubleNegation
       register('create') { |_account, _| false }
     end
   end
