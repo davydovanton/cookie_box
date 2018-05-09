@@ -19,12 +19,22 @@ module Repositories
 
       def call(payload)
         payload = yield VALIDATOR.call(payload).to_either
-        repository = yield Maybe(repository_repo.find(payload[:repository_id]))
-        account = yield Maybe(account_repo.owner_for_repository(payload[:repository_id]))
+        repository = yield find_repository(payload[:repository_id])
+        account = yield find_repository_owner(payload[:repository_id])
 
         yield webhook_request.call(token: account.token, repository: repository)
         prersist_webhook_status.call(webhook_owner_id: account.id, **payload)
         # notify
+      end
+
+      private
+
+      def find_repository(repository_id)
+        Maybe(repository_repo.find(repository_id))
+      end
+
+      def find_repository_owner(repository_id)
+        Maybe(account_repo.owner_for_repository(repository_id))
       end
     end
   end

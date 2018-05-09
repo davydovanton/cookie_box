@@ -3,9 +3,9 @@
 module Webhooks::Controllers::Github
   class Create
     include Webhooks::Action
-    inclide Import[operation: 'issues.operations.update']
+    include Import[operation: 'issues.operations.update']
 
-    def call(params)
+    def call(_params)
       # operation.call(params)
       self.body = '{}'
     end

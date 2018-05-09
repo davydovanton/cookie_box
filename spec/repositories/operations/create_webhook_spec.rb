@@ -72,7 +72,10 @@ RSpec.describe Repositories::Operations::CreateWebhook do
     end
 
     it 'calls prersist_webhook_status with right attributes' do
-      expect(prersist_webhook_status).to receive(:call).with(webhook_owner_id: 5, repository_id: 1).and_return(Success(:ok))
+      expect(prersist_webhook_status).to receive(:call).with(
+        webhook_owner_id: 5,
+        repository_id: 1
+      ).and_return(Success(:ok))
       subject
     end
   end
