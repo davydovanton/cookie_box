@@ -11,7 +11,6 @@ class AccountRepository < Hanami::Repository
     root.where(uid: uid).map_to(Account).one
   end
 
-  # TODO: SPECS
   def owner_for_repository(repository_id)
     root
       .join(:decks)
