@@ -9,10 +9,10 @@ RSpec.describe Repositories::Libs::PrersistWebhookStatus do
 
   context 'when mock repository' do
     let(:repo) { double(:repo, update: Repository.new) }
-    let(:payload) { { repository_id: 1 } }
+    let(:payload) { { repository_id: 1, webhook_owner_id: 5 } }
 
     it 'calls update method with webhook flag' do
-      expect(repo).to receive(:update).with(1, webhook_enable: true)
+      expect(repo).to receive(:update).with(1, webhook_enable: true, webhook_owner_id: 5)
       subject
     end
   end

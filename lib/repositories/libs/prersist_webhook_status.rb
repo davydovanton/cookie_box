@@ -9,9 +9,9 @@ module Repositories
 
       include Import['repositories.repository']
 
-      def call(repository_id:)
+      def call(repository_id:, webhook_owner_id:)
         # TODO: log updating
-        Right(repository.update(repository_id, webhook_enable: true))
+        Right(repository.update(repository_id, webhook_enable: true, webhook_owner_id: webhook_owner_id))
       end
     end
   end

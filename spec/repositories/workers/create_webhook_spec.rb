@@ -37,15 +37,19 @@ RSpec.describe Repositories::Workers::CreateWebhook do
     let(:operation) { Repositories::Operations::CreateWebhook.new(webhook_request: ->(_) { Right(status: :ok) }) }
     let(:repository) { Fabricate.create(:repository, webhook_enable: false) }
 
-    subject { worker.perform(repository.id) }
+    let(:account) { Fabricate.create(:account) }
+    let(:deck) { Fabricate.create(:deck, account_id: account.id) }
 
-    after { repo.clear }
+    before { Fabricate.create(:deck_repo, deck_id: deck.id, repository_id: repository.id) }
+
+    subject { worker.perform(repository.id) }
 
     let(:new_repository) { repo.find(repository.id) }
 
     it 'changes repository webhook status' do
       subject
       expect(new_repository.webhook_enable).to be true
+      expect(new_repository.webhook_owner_id).to eq account.id
     end
   end
 end
