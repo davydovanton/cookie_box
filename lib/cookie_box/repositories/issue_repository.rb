@@ -14,4 +14,14 @@ class IssueRepository < Hanami::Repository
       .where(deck_repos[:deck_id].qualified => deck_id)
       .map_to(Issue).to_a
   end
+
+  def update_from_vsc(vsc_id, paylaod)
+    issue = find_by_vcs_source(vsc_id)
+
+    issue ? update(issue.id, payload) : create(vsc_source_id: vsc_id, **payload)
+  end
+
+  def find_by_vcs_source(vsc_id)
+    root.where(vsc_source_id: vsc_id).map_to(Issue).one
+  end
 end

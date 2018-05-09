@@ -6,6 +6,7 @@ module Webhooks::Controllers::Github
     include Import[operation: 'issues.operations.update']
 
     def call(_params)
+      # TODO: log operation call
       # operation.call(params)
       self.body = '{}'
     end
