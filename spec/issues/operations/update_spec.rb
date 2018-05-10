@@ -66,7 +66,7 @@ RSpec.describe Issues::Operations::Update do
     expect(issue_repo).to receive(:update_from_vcs).with(
       321_650_570, webhook[:repository][:full_name],
       title: 'One more test',
-      user: webhook[:issue][:user],
+      author: webhook[:issue][:user],
       labels: [],
       state: 'open',
       locked: false,
