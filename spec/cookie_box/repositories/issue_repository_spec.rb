@@ -23,4 +23,21 @@ RSpec.describe IssueRepository, type: :repository do
       it { expect(repo.all_for_deck(0)).to be_empty }
     end
   end
+
+  describe '#find_by_vcs_source' do
+    let(:issue) { Fabricate.create(:issue, vcs_source_id: vcs_source_id) }
+    let(:vcs_source_id) { 123 }
+
+    subject { repo.find_by_vcs_source(vcs_source_id) }
+
+    context 'when db contain the issue with vcs source' do
+      before { issue }
+
+      it { expect(subject).to eq issue }
+    end
+
+    context 'when db does not contain the issue with vcs source' do
+      it { expect(subject).to eq nil }
+    end
+  end
 end
