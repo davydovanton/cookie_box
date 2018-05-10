@@ -7,7 +7,7 @@ module Webhooks::Controllers::Github
 
     def call(params)
       # TODO: log operation call
-      # operation.call(webhook: params)
+      operation.call(webhook: params.to_h)
       self.body = '{}'
     end
   end
