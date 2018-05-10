@@ -8,6 +8,7 @@ module Webhooks::Controllers::Github
     def call(_params)
       # TODO: log operation call
       # operation.call(params)
+      # require 'debug'
       self.body = '{}'
     end
   end

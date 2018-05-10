@@ -5,6 +5,9 @@ RSpec.describe Issues::Operations::Update do
 
   let(:webhook) do
     {
+      repository: {
+        full_name: 'davydovanton/cookie_box'
+      },
       action: 'opened',
       issue: {
         url: 'https://api.github.com/repos/davydovanton/cookie_box/issues/14',
@@ -61,15 +64,16 @@ RSpec.describe Issues::Operations::Update do
 
   it 'calls repository with right data' do
     expect(issue_repo).to receive(:update_from_vcs).with(
-      321650570,
-      title: "One more test",
+      321_650_570, webhook[:repository][:full_name],
+      title: 'One more test',
       user: webhook[:issue][:user],
       labels: [],
       state: 'open',
       locked: false,
+      html_url: 'https://github.com/davydovanton/cookie_box/issues/14',
       assignees: [],
       comments: 0,
-      updated_at: "2018-05-09T17:01:45Z",
+      updated_at: '2018-05-09T17:01:45Z',
       closed_at: nil
     )
     subject
@@ -79,9 +83,11 @@ RSpec.describe Issues::Operations::Update do
     let(:operation) { described_class.new }
     let(:repo) { IssueRepository.new }
 
-    after { repo.clear }
+    before { Fabricate.create(:repository, full_name: webhook[:repository][:full_name]) }
+
+    after { repo.clear && RepositoryRepository.new.clear }
 
     it { expect(subject).to be_right }
-    it { expect(subject).to change { repo.all.count }.by(1) }
+    it { expect { subject }.to change { repo.all.count }.by(1) }
   end
 end

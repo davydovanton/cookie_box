@@ -15,10 +15,15 @@ class IssueRepository < Hanami::Repository
       .map_to(Issue).to_a
   end
 
-  def update_from_vcs(vsc_id, payload)
+  def update_from_vcs(vsc_id, repository_full_name, payload)
     issue = find_by_vcs_source(vsc_id)
 
-    issue ? update(issue.id, payload) : create(vcs_source_id: vsc_id, **payload)
+    if issue
+      update(issue.id, payload)
+    else
+      repository = repositories.where(full_name: repository_full_name).one!
+      create(repository_id: repository.id, vcs_source_id: vsc_id, **payload)
+    end
   end
 
   def find_by_vcs_source(vsc_id)
