@@ -66,11 +66,11 @@ RSpec.describe IssueRepository, type: :repository do
       context 'and repository exists' do
         before { Fabricate.create(:repository, full_name: repository_full_name) }
 
-        it { expect{ subject }.to change { repo.all.count }.by(1) }
+        it { expect { subject }.to change { repo.all.count }.by(1) }
       end
 
       context 'and repository does not exist' do
-        it { expect{ subject }.to raise_error(ROM::TupleCountMismatchError) }
+        it { expect { subject }.to raise_error(ROM::TupleCountMismatchError) }
       end
     end
   end

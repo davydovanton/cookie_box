@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Webhooks::Controllers::Github::Create, type: :action do
-  let(:operation) { -> (_) { true } }
+  let(:operation) { ->(_) { true } }
   let(:action) { described_class.new(operation: operation) }
   let(:params) { Hash[] }
 
