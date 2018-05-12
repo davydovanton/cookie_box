@@ -50,10 +50,10 @@ RSpec.describe Repositories::Operations::Create do
     end
 
     context 'and repository name contain site with http schema' do
-      let(:repo_name) { 'http://github.com/hanami/hanami' }
+      let(:repo_name) { 'http://github.com/hanami/web-console' }
 
       it 'creates a new repo <-> deck association' do
-        expect(get_or_create_repo_mock).to receive(:call).with('http://github.com/hanami/hanami')
+        expect(get_or_create_repo_mock).to receive(:call).with('http://github.com/hanami/web-console')
         subject
       end
     end
