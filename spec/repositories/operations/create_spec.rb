@@ -19,6 +19,10 @@ RSpec.describe Repositories::Operations::Create do
 
       it { expect(subject).to be_right }
 
+      it 'call webhook worker' do
+        expect { subject }.to change { Repositories::Workers::CreateWebhook.jobs.count }.by(1)
+      end
+
       it 'creates a new repo <-> deck association' do
         expect(deck_repo_mock).to receive(:select_or_create).with(deck_id: 1, repository_id: 1)
         subject

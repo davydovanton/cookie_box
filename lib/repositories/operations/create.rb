@@ -17,8 +17,11 @@ module Repositories
       def call(payload)
         payload = yield VALIDATOR.call(payload).to_either
         repo = yield get_or_create_repo.call(payload[:repo_name])
+        deck = yield Success(persist(repo, payload))
 
-        Right(persist(repo, payload))
+        Workers::CreateWebhook.perform_async(repo.id)
+
+        Success(deck)
       end
 
       def persist(repo, payload)
