@@ -19,7 +19,7 @@ RSpec.describe Webhooks::Controllers::Github::Create, type: :action do
   end
 
   context 'when webhook does not contain issue key' do
-    let(:params) { { zen: "Half measures are as bad as nothing at all." } }
+    let(:params) { { zen: 'Half measures are as bad as nothing at all.' } }
 
     it 'calls operation with right attributes' do
       expect(operation).to_not receive(:call).with(webhook: {})
