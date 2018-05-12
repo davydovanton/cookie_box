@@ -9,8 +9,21 @@ RSpec.describe Webhooks::Controllers::Github::Create, type: :action do
 
   it { expect(subject).to be_success }
 
-  it 'calls operation with right attributes' do
-    expect(operation).to receive(:call).with(webhook: {})
-    subject
+  context 'when webhook contains issue key' do
+    let(:params) { { issue: {} } }
+
+    it 'calls operation with right attributes' do
+      expect(operation).to receive(:call).with(webhook: { issue: {} })
+      subject
+    end
+  end
+
+  context 'when webhook does not contain issue key' do
+    let(:params) { { zen: "Half measures are as bad as nothing at all." } }
+
+    it 'calls operation with right attributes' do
+      expect(operation).to_not receive(:call).with(webhook: {})
+      subject
+    end
   end
 end

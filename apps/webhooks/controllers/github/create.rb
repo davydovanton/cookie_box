@@ -7,7 +7,9 @@ module Webhooks::Controllers::Github
 
     def call(params)
       # TODO: log operation call
-      operation.call(webhook: params.to_h)
+
+      # First repository hook contain [:zen, :hook_id, :hook, :repository, :sender] keys and we need to miss it.
+      operation.call(webhook: params.to_h) if params[:issue]
       self.body = '{}'
     end
   end
