@@ -54,6 +54,12 @@ RSpec.describe Repositories::Operations::CreateWebhook do
     let(:repository) { Repository.new }
 
     it { expect(subject).to eq Success(:ok) }
+
+    context 'and repositrory alredy has webhook' do
+      let(:repository) { Repository.new(webhook_enable: true) }
+
+      it { expect(subject).to eq Failure(error: :webhook_exist) }
+    end
   end
 
   context 'when repository does not exist' do
