@@ -17,6 +17,7 @@ module Repositories
         required(:repository_id).filled(:int?)
       end
 
+      # TODO: rename it to github specific agregation
       def call(payload)
         payload = yield VALIDATOR.call(payload).to_either
 
