@@ -39,5 +39,19 @@ RSpec.describe Repositories::Abilities::Regular do
 
       it { expect(subject).to eq false }
     end
+
+    context 'when account has other role' do
+      let(:account) { Account.new(roles: 'admin') }
+      subject { described_class.valid_role?(account, nil) }
+
+      it { expect(subject).to eq false }
+    end
+
+    context 'when account has regular role' do
+      let(:account) { Account.new(roles: 'regular') }
+      subject { described_class.valid_role?(account, nil) }
+
+      it { expect(subject).to eq true }
+    end
   end
 end
