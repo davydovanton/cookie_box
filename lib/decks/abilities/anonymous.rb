@@ -5,6 +5,7 @@ module Decks
     class Anonymous
       include Kan::Abilities
 
+      # TODO: add specs
       role(:anonymous) { |account, _| account.roles.nil? }
 
       register('read') { |_account, deck| !!deck&.published } # rubocop:disable Style/DoubleNegation

@@ -5,6 +5,7 @@ module Decks
     class Regular
       include Kan::Abilities
 
+      # TODO: add specs
       role(:regular) do |account, _|
         account.roles.nil? || account.roles == 'regular'
       end
