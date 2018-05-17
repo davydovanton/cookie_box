@@ -49,6 +49,11 @@ Hanami.configure do # rubocop:disable Metrics/BlockLength
     logger level: :debug
   end
 
+  environment :test do
+    # See: http://hanamirb.org/guides/projects/logging
+    logger level: :debug, stream: StringIO.new
+  end
+
   environment :production do
     logger level: :info, formatter: :json, filter: []
 

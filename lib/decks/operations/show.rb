@@ -3,7 +3,7 @@
 module Decks
   module Operations
     class Show < Core::Operation
-      include Import['domain_caller', deck_repo: 'repositories.deck']
+      include Import['logger', 'domain_caller', deck_repo: 'repositories.deck']
 
       def call(slug)
         deck = deck_repo.find_by_slug_with_repos(slug)
@@ -15,7 +15,8 @@ module Decks
         when Success
           Success(deck: deck, issues: issues.value!)
         when Failure
-          # TODO: logger call
+          logger.info("No issues for deck##{deck.id}")
+
           Success(deck: deck, issues: {})
         end
       end
