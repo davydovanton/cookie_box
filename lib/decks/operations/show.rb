@@ -9,6 +9,7 @@ module Decks
         deck = deck_repo.find_by_slug_with_repos(slug)
         return Failure(:not_found) unless deck
 
+        # TODO: THINK call it in app?
         issues = domain_caller.call('issues.list', deck_id: deck.id)
 
         case issues
