@@ -3,10 +3,10 @@
 module Webhooks::Controllers::Github
   class Create
     include Webhooks::Action
-    include Import[operation: 'issues.operations.update']
+    include Import['logger', operation: 'issues.operations.update']
 
     def call(params)
-      # TODO: log operation call
+      logger.info "Got github hook: #{params.to_h.inspect}"
 
       # First repository hook contain [:zen, :hook_id, :hook, :repository, :sender] keys and we need to miss it.
       operation.call(webhook: params.to_h) if params[:issue]
