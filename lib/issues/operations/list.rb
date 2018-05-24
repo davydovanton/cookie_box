@@ -5,7 +5,6 @@ module Issues
     class List < Core::Operation
       include Import[issue_repo: 'repositories.issue']
 
-      # THINK: replace this operation to issues domain 'issues.operations.list'
       def call(deck_id:)
         groupped_issues = issue_repo.all_for_deck(deck_id).group_by { |entity| entity.state.to_sym }
 
