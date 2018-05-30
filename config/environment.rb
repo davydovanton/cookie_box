@@ -4,7 +4,8 @@ require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
 require_relative '../system/import'
-require_relative '../lib/cookie_box'
+# TODO: Do we really need this require?
+# require_relative '../lib/cookie_box'
 
 Hanami.configure do # rubocop:disable Metrics/BlockLength
   if Hanami.app?(:webhooks)
