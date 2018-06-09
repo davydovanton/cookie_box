@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Auth::Oauth::GithubCallback do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
 
   let(:repo) { AccountRepository.new }
   let(:callback) { described_class.new({}) }

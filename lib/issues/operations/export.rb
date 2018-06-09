@@ -14,14 +14,14 @@ module Issues
         entity = yield find(repository_id)
         issues = yield github_list.call(entity)
 
-        Right(persist_issues(issues, repository_id))
+        Success(persist_issues(issues, repository_id))
       end
 
       private
 
       def find(id)
         entity = repository.find(id)
-        entity ? Right(entity) : Left(:not_found)
+        entity ? Success(entity) : Failure(:not_found)
       end
 
       def persist_issues(issues, repository_id)

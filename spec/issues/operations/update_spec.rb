@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Issues::Operations::Update do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
 
   let(:webhook) do
     {

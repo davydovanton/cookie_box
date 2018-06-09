@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Repositories::Libs::Github::WebhookRequest do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
 
   let(:lib) { described_class.new(http_request: http_request) }
   let(:http_request) { double(:http_request, post: response) }

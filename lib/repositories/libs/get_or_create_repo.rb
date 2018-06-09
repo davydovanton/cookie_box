@@ -3,7 +3,7 @@
 module Repositories
   module Libs
     class GetOrCreateRepo
-      include Dry::Monads::Either::Mixin
+      include Dry::Monads::Result::Mixin
       include Import[
         'repositories.repository', 'repositories.libs.github.info_getter', 'issues.workers.export'
       ]
@@ -15,7 +15,7 @@ module Repositories
         repo = repository.find_by_name(repo_name)
 
         if repo
-          Right(repo)
+          Success(repo)
         else
           info_getter.call(repo_name).fmap { |value| create_repository(value) }
         end

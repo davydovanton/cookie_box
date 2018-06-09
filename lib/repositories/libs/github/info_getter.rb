@@ -6,16 +6,16 @@ module Repositories
   module Libs
     module Github
       class InfoGetter
-        include Dry::Monads::Either::Mixin
+        include Dry::Monads::Result::Mixin
         include Import[:github_client]
 
         def call(repo_name)
           response = github_client.get("/repos/#{repo_name}")
-          return Left(:invalid_repo_name) unless response.success?
+          return Failure(:invalid_repo_name) unless response.success?
 
           data = JSON.parse(response.body)
 
-          Right(
+          Success(
             full_name: data['full_name'],
             description: data['description'],
             html_url: data['html_url'],

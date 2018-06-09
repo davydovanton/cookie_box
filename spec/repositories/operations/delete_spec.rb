@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Repositories::Operations::Delete do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
 
   let(:lib) { described_class.new(deck_repo: deck_repo_mock) }
   let(:deck_repo_mock) { double(:deck_repo, delete_from_deck: true) }

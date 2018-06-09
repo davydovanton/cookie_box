@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Repositories::Libs::GetOrCreateRepo do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
 
   let(:lib) { described_class.new(repository: repository_mock, info_getter: info_getter_mock) }
   let(:info_getter_mock) { double(:info_getter, call: Right({})) }
@@ -30,7 +30,7 @@ RSpec.describe Repositories::Libs::GetOrCreateRepo do
     let(:repository_mock) { double(:repository, find_by_name: nil, create: Repository.new(title: 'created')) }
 
     context 'and exist in github' do
-      let(:info_getter_mock) { double(:info_getter, call: Right({})) }
+      let(:info_getter_mock) { double(:info_getter, call: Success({})) }
 
       it { expect(subject).to be_right }
       it { expect(subject.value!).to eq Repository.new(title: 'created') }
@@ -39,7 +39,7 @@ RSpec.describe Repositories::Libs::GetOrCreateRepo do
     end
 
     context 'and does not exist in github' do
-      let(:info_getter_mock) { double(:info_getter, call: Left(:error)) }
+      let(:info_getter_mock) { double(:info_getter, call: Failure(:error)) }
 
       it { expect(subject).to be_left }
       it { expect(subject.failure).to eq :error }

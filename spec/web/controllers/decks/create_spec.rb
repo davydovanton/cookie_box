@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Web::Controllers::Decks::Create, type: :action do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
 
   let(:mock_operation) { Mock::SuccessListOperation.new }
   let(:action) { described_class.new(operation: mock_operation) }
