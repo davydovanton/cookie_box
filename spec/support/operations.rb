@@ -4,13 +4,13 @@
 module Mock
   class SuccessListOperation < Core::Operation
     def call(*)
-      Right([])
+      Success([])
     end
   end
 
   class FailListOperation < Core::Operation
     def call(*)
-      Left(:some_error)
+      Failure(:some_error)
     end
   end
 end

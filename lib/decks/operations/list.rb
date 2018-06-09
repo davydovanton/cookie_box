@@ -6,7 +6,7 @@ module Decks
       include Import['repositories.deck']
 
       def call(account_id)
-        Right(deck.all_for_account(account_id))
+        Success(deck.all_for_account(account_id))
       end
     end
   end

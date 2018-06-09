@@ -9,7 +9,7 @@ module Decks
         deck = repository.find_by_slug(deck_slug)
         repository.archive(deck.id) if deck&.account_id == account_id
 
-        Right(:ok)
+        Success(:ok)
       end
     end
   end

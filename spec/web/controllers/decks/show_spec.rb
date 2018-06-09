@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Web::Controllers::Decks::Show, type: :action do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
 
   let(:mock_operation) { Mock::SuccessListOperation.new }
   let(:action) { described_class.new(operation: mock_operation) }
@@ -13,12 +13,12 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
     context 'and operation returns success result' do
       let(:deck) { Deck.new(id: 1, account_id: 1) }
 
-      before { allow(mock_operation).to receive(:call).and_return(Right(deck: deck, issues: {})) }
+      before { allow(mock_operation).to receive(:call).and_return(Success(deck: deck, issues: {})) }
 
       it { expect(action.call(params)).to be_success }
 
       it 'calls operation with current account id' do
-        expect(mock_operation).to receive(:call).with(1).and_return(Right(deck: deck, issues: {}))
+        expect(mock_operation).to receive(:call).with(1).and_return(Success(deck: deck, issues: {}))
         action.call(params)
       end
 
@@ -29,7 +29,7 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
     end
 
     context 'and operation returns not account deck' do
-      before { allow(mock_operation).to receive(:call).and_return(Right(deck: deck, issues: {})) }
+      before { allow(mock_operation).to receive(:call).and_return(Success(deck: deck, issues: {})) }
 
       let(:deck) { Deck.new(id: 1, account_id: 2) }
 
@@ -42,7 +42,7 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
     end
 
     context 'and operation returns public not account deck' do
-      before { allow(mock_operation).to receive(:call).and_return(Right(deck: deck, issues: {})) }
+      before { allow(mock_operation).to receive(:call).and_return(Success(deck: deck, issues: {})) }
 
       let(:deck) { Deck.new(id: 1, account_id: 2, published: true) }
 
@@ -63,7 +63,7 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
   end
 
   context 'when account not login' do
-    before { allow(mock_operation).to receive(:call).and_return(Right(deck: deck, issues: {})) }
+    before { allow(mock_operation).to receive(:call).and_return(Success(deck: deck, issues: {})) }
 
     let(:deck) { Deck.new(id: 1, account_id: 1) }
 
@@ -74,7 +74,7 @@ RSpec.describe Web::Controllers::Decks::Show, type: :action do
   end
 
   context 'when account not login but deck is public' do
-    before { allow(mock_operation).to receive(:call).and_return(Right(deck: deck, issues: {})) }
+    before { allow(mock_operation).to receive(:call).and_return(Success(deck: deck, issues: {})) }
 
     let(:deck) { Deck.new(id: 1, account_id: 1, published: true) }
 

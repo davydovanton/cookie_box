@@ -7,7 +7,7 @@ require 'dry-matcher'
 
 module Core
   class Operation
-    include Dry::Monads::Either::Mixin
+    include Dry::Monads::Result::Mixin
 
     Dry::Validation.load_extensions(:monads)
   end

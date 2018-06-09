@@ -15,7 +15,7 @@ module Repositories
       def call(payload)
         payload = yield VALIDATOR.call(payload).to_either
 
-        Right(deck_repo.delete_from_deck(payload[:deck_id], payload[:repository_id]))
+        Success(deck_repo.delete_from_deck(payload[:deck_id], payload[:repository_id]))
       end
     end
   end

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe Repositories::Operations::Create do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
 
   let(:lib) { described_class.new(deck_repo: deck_repo_mock, get_or_create_repo: get_or_create_repo_mock) }
   let(:deck_repo_mock) { double(:deck_repo, select_or_create: DeckRepo.new) }
   let(:get_or_create_repo_mock) { double(:get_or_create_repo, call: repo_result) }
-  let(:repo_result) { Right(Repository.new(id: 1)) }
+  let(:repo_result) { Success(Repository.new(id: 1)) }
 
   subject { lib.call(deck_id: deck_id, repo_name: repo_name) }
 
@@ -15,7 +15,7 @@ RSpec.describe Repositories::Operations::Create do
     let(:repo_name) { 'hanami/hanami' }
 
     context 'and repository exist' do
-      let(:repo_result) { Right(Repository.new(id: 1)) }
+      let(:repo_result) { Success(Repository.new(id: 1)) }
 
       it { expect(subject).to be_right }
 
@@ -30,7 +30,7 @@ RSpec.describe Repositories::Operations::Create do
     end
 
     context 'and repository does not exist' do
-      let(:repo_result) { Left(:error) }
+      let(:repo_result) { Failure(:error) }
 
       it { expect(subject).to be_left }
 

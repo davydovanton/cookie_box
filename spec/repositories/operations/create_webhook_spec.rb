@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Repositories::Operations::CreateWebhook do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
   include Dry::Monads::Maybe::Mixin
 
   let(:account_repo) { double(:account_repo, owner_for_repository: account) }
@@ -35,7 +35,7 @@ RSpec.describe Repositories::Operations::CreateWebhook do
   context 'when payload invalid' do
     let(:payload) { { repository_id: 'asd' } }
 
-    it { expect(subject).to eq Left(repository_id: ['must be an integer']) }
+    it { expect(subject).to eq Failure(repository_id: ['must be an integer']) }
   end
 
   context 'when repo has a owner' do

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Web::Controllers::Decks::Index, type: :action do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
 
   let(:mock_operation) { Mock::SuccessListOperation.new }
   let(:action) { described_class.new(operation: mock_operation) }
@@ -16,7 +16,7 @@ RSpec.describe Web::Controllers::Decks::Index, type: :action do
       it { expect(action.call(params)).to be_success }
 
       it 'calls operation with current account id' do
-        expect(mock_operation).to receive(:call).with(1).and_return(Right([]))
+        expect(mock_operation).to receive(:call).with(1).and_return(Success([]))
         action.call(params)
       end
 
@@ -32,7 +32,7 @@ RSpec.describe Web::Controllers::Decks::Index, type: :action do
       it { expect(action.call(params)).to be_success }
 
       it 'calls operation with current account id' do
-        expect(mock_operation).to receive(:call).with(1).and_return(Right([]))
+        expect(mock_operation).to receive(:call).with(1).and_return(Success([]))
         action.call(params)
       end
 

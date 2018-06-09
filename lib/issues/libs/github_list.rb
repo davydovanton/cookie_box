@@ -6,7 +6,7 @@ module Issues
   module Libs
     # TODO: specs
     class GithubList
-      include Dry::Monads::Either::Mixin
+      include Dry::Monads::Result::Mixin
       include Import['core.http_request', :logger]
 
       # rubocop:disable Metrics/LineLength
@@ -26,7 +26,7 @@ module Issues
                    client_secret: ENV['GITHUB_SECRET'])
           )
 
-          return Left(:invalid_repo_name) unless response.is_a?(Net::HTTPSuccess)
+          return Failure(:invalid_repo_name) unless response.is_a?(Net::HTTPSuccess)
 
           page_data = select_issues(response)
           log_page(repository, page, page_data)
@@ -35,7 +35,7 @@ module Issues
           data += page_data
         end while page_data.any?
 
-        Right(data)
+        Success(data)
       end
 
       private

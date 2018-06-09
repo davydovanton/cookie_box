@@ -6,7 +6,7 @@ module Auth
       def call(oauth_response)
         account = account_repo.find_by_uid(oauth_response['uid'])
         account ||= account_repo.create(oauth_data(oauth_response))
-        Right(account)
+        Success(account)
       end
 
       private

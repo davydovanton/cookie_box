@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Repositories::Libs::Github::InfoGetter do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
 
   let(:lib) { described_class.new }
 

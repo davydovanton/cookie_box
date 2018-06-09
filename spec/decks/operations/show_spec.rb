@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Decks::Operations::Show do
-  include Dry::Monads::Either::Mixin
+  include Dry::Monads::Result::Mixin
 
   let(:operation) { described_class.new(deck_repo: deck_repo, domain_caller: domain_caller) }
   let(:domain_caller) { double(:events, call: Success({})) }

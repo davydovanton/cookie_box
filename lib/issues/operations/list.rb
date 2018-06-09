@@ -8,7 +8,7 @@ module Issues
       def call(deck_id:)
         groupped_issues = issue_repo.all_for_deck(deck_id).group_by { |entity| entity.state.to_sym }
 
-        Right(groupped_issues)
+        Success(groupped_issues)
       end
     end
   end

@@ -6,7 +6,7 @@ module Repositories
   module Libs
     module Github
       class WebhookRequest
-        include Dry::Monads::Either::Mixin
+        include Dry::Monads::Result::Mixin
         include Import['core.http_request']
 
         GITHUB_WEBHOOK_API_URL = 'https://api.github.com/repos/%{full_name}/hooks?access_token=%{token}'
@@ -27,9 +27,9 @@ module Repositories
             NEW_HOOK_PAYLOAD
           )
 
-          return Left(response.body) unless response.is_a?(Net::HTTPSuccess)
+          return Failure(response.body) unless response.is_a?(Net::HTTPSuccess)
 
-          Right(status: :ok)
+          Success(status: :ok)
         end
       end
     end
