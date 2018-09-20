@@ -22,6 +22,8 @@
             .repository__archive
               - if deck.account_id == current_account.id
                 = delete_repository_button(repo.id)
+              - else
+                span.empty-archive-place
 
             .repository__description
               = repo.description
