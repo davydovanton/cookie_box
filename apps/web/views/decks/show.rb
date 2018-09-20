@@ -20,7 +20,7 @@ module Web::Views::Decks
 
     def add_repository_form
       form_for deck_form, id: 'deck-form' do
-        text_field :name
+        text_field :name, placeholder: 'github.com/username/repo'
         hidden_field :deck_id, value: deck.id
         hidden_field :deck_slug, value: deck.slug
 
